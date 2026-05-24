@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Les électrons libres - Stock local</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar" aria-label="Navigation secondaire">
+      <a class="brand" href="#stock" data-page-link="stock" aria-label="Les électrons libres">
+        <span class="brand-main">les électrons<br />libres</span>
+        <span class="brand-line"></span>
+        <span class="brand-tag">idées singulières<br />au service du progrès</span>
+      </a>
+
+      <nav class="side-nav">
+        <button class="side-link active" data-page="stock" type="button">
+          <span>▦</span>
+          Tableau de stock
+        </button>
+        <button class="side-link" data-page="alerts" type="button">
+          <span>⚠</span>
+          Alertes et priorités
+        </button>
+        <button class="side-link" data-page="summary" type="button">
+          <span>◔</span>
+          Synthèse visuelle
+        </button>
+      </nav>
+
+      <section class="local-card">
+        <strong>Application locale</strong>
+        <p>Aucune donnée n’est envoyée à un service externe. Le fichier Excel original reste intact.</p>
+      </section>
+    </aside>
+
+    <div class="shell">
+      <header class="topbar">
+        <nav class="tabs" aria-label="Pages">
+          <button class="tab active" data-page="stock" type="button">Tableau de stock</button>
+          <button class="tab" data-page="alerts" type="button">Alertes et priorités</button>
+          <button class="tab" data-page="summary" type="button">Synthèse visuelle</button>
+        </nav>
+
+        <div class="top-actions">
+          <label class="upload-control">
+            <span>Importer Excel</span>
+            <input id="fileInput" type="file" accept=".xlsx,.xls" />
+          </label>
+        </div>
+      </header>
+
+      <main>
+        <section class="notice" id="notice">
+          Importez le fichier <strong>stock_fictif_codex.xlsx</strong>. Les références sont générées localement car le fichier n’en contient pas.
+        </section>
+
+        <section id="stock" class="page active">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">Vue opérationnelle</p>
+              <h1>Tableau de stock</h1>
+            </div>
+            <p class="page-note" id="stockCount">Aucun fichier importé</p>
+          </div>
+
+          <form class="filters" aria-label="Filtres du tableau">
+            <label class="search-box">
+              <span>Recherche</span>
+              <input id="searchInput" type="search" placeholder="Produit, référence, fournisseur..." />
+            </label>
+            <label>
+              <span>Catégorie</span>
+              <select id="categoryFilter">
+                <option value="">Toutes</option>
+              </select>
+            </label>
+            <label>
+              <span>Statut</span>
+              <select id="statusFilter">
+                <option value="">Tous</option>
+                <option value="Urgent">Urgent</option>
+                <option value="Réappro">Réappro</option>
+                <option value="A surveiller">À surveiller</option>
+                <option value="Stock dormant">Stock dormant</option>
+                <option value="Stable">Stable</option>
+              </select>
+            </label>
+            <label>
+              <span>Couverture</span>
+              <select id="coverageFilter">
+                <option value="">Toutes</option>
+                <option value="low">≤ 7 jours</option>
+                <option value="watch">≤ 30 jours</option>
+                <option value="wide">> 30 jours</option>
+              </select>
+            </label>
+            <button class="ghost-button" id="resetFilters" type="button">Réinitialiser</button>
+          </form>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Référence</th>
+                  <th>Produit</th>
+                  <th>Catégorie</th>
+                  <th>Stock actuel</th>
+                  <th>Stock minimum</th>
+                  <th>Ventes 7 jours</th>
+                  <th>Couverture</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody id="stockRows"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="alerts" class="page">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">Plan d’action</p>
+              <h1>Alertes et priorités</h1>
+            </div>
+            <p class="page-note" id="priorityCount">0 priorité</p>
+          </div>
+
+          <section class="panel">
+            <div class="panel-title">
+              <h2>Réapprovisionnement urgent</h2>
+              <span>Produits sous seuil ou à faible couverture</span>
+            </div>
+            <div id="priorityList" class="priority-grid"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-title">
+              <h2>Stocks dormants</h2>
+              <span>Produits à faible rotation selon les données disponibles</span>
+            </div>
+            <div class="compact-table" id="dormantList"></div>
+          </section>
+        </section>
+
+        <section id="summary" class="page">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">Lecture rapide</p>
+              <h1>Synthèse visuelle</h1>
+            </div>
+            <p class="page-note" id="summaryDate">Après import Excel</p>
+          </div>
+
+          <div class="kpis">
+            <article>
+              <span id="kpiProducts">0</span>
+              <p>Produits</p>
+            </article>
+            <article>
+              <span id="kpiShortage">0</span>
+              <p>Ruptures probables</p>
+            </article>
+            <article>
+              <span id="kpiDormant">0</span>
+              <p>Stocks dormants</p>
+            </article>
+            <article>
+              <span id="kpiCoverage">-</span>
+              <p>Couverture moyenne</p>
+            </article>
+          </div>
+
+          <div class="summary-grid">
+            <section class="panel">
+              <div class="panel-title">
+                <h2>Répartition par catégorie</h2>
+                <span>Alertes détectées</span>
+              </div>
+              <div id="categoryChart" class="bar-chart"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-title">
+                <h2>Répartition par statut</h2>
+                <span>Produits analysés</span>
+              </div>
+              <div id="statusChart" class="donut-wrap"></div>
+            </section>
+            <section class="panel actions-panel">
+              <div class="panel-title">
+                <h2>À retenir</h2>
+                <span>Synthèse simple</span>
+              </div>
+              <ol id="takeaways" class="takeaways"></ol>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
