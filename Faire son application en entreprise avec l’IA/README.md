@@ -14,6 +14,8 @@ Allez sur la page officielle : [chatgpt.com/fr-FR/codex](https://chatgpt.com/fr-
 
 Téléchargez l'application Codex pour votre ordinateur, installez-la, puis connectez-vous avec votre compte ChatGPT.
 
+![Page de téléchargement Codex](./assets/01-codex-page-telechargement.png)
+
 Selon votre abonnement, les limites d'usage ne seront pas les mêmes. Pour ce tutoriel, ce n'est pas grave : on ne cherche pas à lancer un agent pendant huit heures. On veut faire un premier prototype court, local et compréhensible.
 
 ## 2. Comprendre l'interface
@@ -31,6 +33,8 @@ Dans la colonne de gauche, vous verrez notamment :
 
 Le point important : Codex n'est pas seulement une fenêtre de chat. Il peut lire, créer et modifier des fichiers dans le dossier de travail que vous lui donnez.
 
+![Interface principale de Codex](./assets/02-interface-codex.png)
+
 ## 3. Régler Codex pour commencer
 
 Pour un premier essai, restez simple.
@@ -44,6 +48,8 @@ Dans les paramètres :
 - ne créez pas d'automatisation.
 
 La règle de départ : Codex travaille dans un dossier local, sur des données fictives, et rien ne sort vers un outil métier.
+
+![Réglages Codex pour commencer](./assets/03-parametres-codex.png)
 
 ## 4. Créer le projet local
 
@@ -65,9 +71,13 @@ Copiez ensuite le fichier [`stock_fictif_codex.xlsx`](./stock_fictif_codex.xlsx)
 
 Ce fichier contient uniquement des données fictives : produits, catégories, stock actuel, stock minimum, ventes sur 7 jours, délai de réapprovisionnement, fournisseur et commentaire.
 
+![Projet local dans Codex](./assets/04-projet-faire-son-app.png)
+
 ## 5. Premier prompt dans Codex
 
 Dans Codex, sélectionnez le projet **Faire son APP avec l'IA**, puis envoyez ce prompt.
+
+![Zone de prompt avec le projet sélectionné](./assets/05-prompt-projet.png)
 
 ```text
 Je veux créer une petite application locale de gestion de stock à partir d'un fichier Excel.
@@ -186,6 +196,12 @@ Gardez les trois images générées. Vous pouvez les glisser dans Codex ou lui d
 
 Astuce : demandez aussi à Codex de vous préparer des prompts pour GPT Image à partir de la structure de vos pages. Le résultat est souvent meilleur quand la maquette part du vrai jeu de données.
 
+![Maquette Tableau de stock](./assets/06-maquette-tableau-stock.png)
+
+![Maquette Alertes et priorités](./assets/07-maquette-alertes-priorites.png)
+
+![Maquette Synthèse visuelle](./assets/08-maquette-synthese-visuelle.png)
+
 ## 7. Valider, puis seulement coder
 
 Quand Codex vous a proposé l'architecture, les règles métier et les trois pages, relisez.
@@ -242,6 +258,12 @@ Importez le fichier `stock_fictif_codex.xlsx`, puis testez les trois pages :
 - Tableau de stock ;
 - Alertes et priorités ;
 - Synthèse visuelle.
+
+![Application locale avant import du fichier Excel](./assets/09-app-avant-import.png)
+
+![Synthèse visuelle avant import](./assets/10-app-synthese-avant-import.png)
+
+![Synthèse visuelle après import](./assets/11-app-synthese-apres-import.png)
 
 Si une modification ne s'affiche pas, faites un rechargement complet de la page :
 
