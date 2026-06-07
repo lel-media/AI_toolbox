@@ -467,7 +467,6 @@ Si l'application rend vraiment service, vous pouvez demander à Codex de vous ai
 - améliorer le design ;
 - ajouter une vraie base locale ;
 - créer un espace utilisateur ;
-- connecter une authentification Google ;
 - ajouter un historique des imports ;
 - écrire des tests ;
 - préparer une revue technique avec l'IT.
