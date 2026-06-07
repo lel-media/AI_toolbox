@@ -244,36 +244,42 @@ Je valide l'architecture, les règles métier, le format Excel et les trois page
 
 Tu peux maintenant créer l'application locale.
 
-Utilise la solution la plus simple pour un prototype local. Si Python est adapté, tu peux créer un fichier app.py.
-
 Contraintes :
+- créer une application 100% navigateur, en HTML, CSS et JavaScript ;
+- ne pas utiliser Python ;
+- ne créer aucun backend ;
+- ne pas créer de serveur local obligatoire ;
+- ne pas créer de base de données ;
 - le fichier Excel original doit rester intact ;
 - l'application doit fonctionner localement ;
 - aucune connexion externe ;
 - aucune action automatique ;
-- crée un court README avec la commande pour relancer l'application ;
+- crée un court README avec la méthode pour relancer l'application ;
 - ajoute des données d'exemple seulement si le fichier Excel n'est pas encore importé.
 
 Une fois terminé, explique-moi comment lancer l'application.
 ```
 
-Dans notre essai, Codex a créé une application Python simple avec un fichier `app.py`.
+Dans notre essai, Codex a créé une application simple qui fonctionne directement dans le navigateur, avec un fichier `index.html`, un fichier `app.js` et un fichier `styles.css`.
 
 ## 8. Lancer l'application
 
-Quand Codex a fini, demandez-lui :
+Quand Codex a fini, il peut vous donner une commande de ce type :
 
 ```text
-Lance l'application et donne-moi l'adresse locale pour l'ouvrir dans le navigateur.
+cd "/Users/macbook/Documents/Faire son APP avec l'IA 2"
+open index.html
 ```
 
-L'adresse ressemble souvent à :
+Vous pouvez la lancer dans votre terminal si vous êtes à l'aise avec ce type de commande.
+
+Mais le plus simple est de demander directement à Codex :
 
 ```text
-http://127.0.0.1:8000/
+Lance l'application.
 ```
 
-Ouvrez cette adresse dans le navigateur intégré de Codex ou dans votre navigateur habituel.
+Une page devrait alors s'ouvrir directement dans votre navigateur.
 
 Importez le fichier `stock_fictif_codex.xlsx`, puis testez les trois pages :
 
