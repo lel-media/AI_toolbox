@@ -406,17 +406,15 @@ Crée aussi un fichier LIMITES.md avec :
 
 Relisez ce fichier. Il doit être compréhensible par une personne métier et par une personne IT.
 
-## 13. Garder une trace sur GitHub
+## 13. Garder une trace propre
 
-Une fois le prototype fonctionnel, gardez une trace propre.
+Une fois le prototype fonctionnel, gardez une trace simple.
 
-Vous pouvez déjà conserver le dossier sur votre ordinateur et en faire une archive `.zip`. C'est une bonne pratique pour partager le prototype avec un collègue ou en discuter avec le service informatique.
+Pour ce premier exercice, nous vous conseillons surtout de conserver le dossier sur votre ordinateur et d'en faire une archive `.zip`. C'est le plus facile pour partager le prototype avec un collègue ou en discuter avec le service informatique.
 
-GitHub va plus loin : il permet de stocker le projet en ligne, de garder l'historique des modifications et de travailler plus facilement à plusieurs. Dans un prochain article, nous ferons un tutoriel dédié pour apprendre à utiliser GitHub afin de suivre une application et collaborer sur des projets plus poussés.
+Pour aller plus loin, vous pourrez aussi l'héberger sur GitHub. GitHub permet de stocker le projet en ligne, de garder l'historique des modifications et de collaborer plus facilement. Nous y reviendrons dans un prochain article.
 
-Pour ce premier exercice, le plus simple est de créer un dépôt GitHub privé.
-
-Demandez à Codex :
+Si vous voulez déjà préparer le dossier pour GitHub, demandez simplement à Codex :
 
 ```text
 Prépare ce projet pour GitHub.
@@ -424,18 +422,15 @@ Prépare ce projet pour GitHub.
 Je veux :
 - vérifier qu'aucune donnée réelle n'est présente ;
 - créer un fichier .gitignore adapté ;
-- initialiser Git si ce n'est pas déjà fait ;
-- créer un premier commit propre ;
-- me guider pour pousser le projet dans un dépôt GitHub privé.
+- me dire quels fichiers garder dans le dossier ;
+- me dire quels fichiers ne jamais partager.
 
 Important :
-Le dépôt doit rester privé.
-Ne pousse aucune donnée réelle.
+Ne pousse rien en ligne pour l'instant.
+Ne partage aucune donnée réelle.
 ```
 
-Pourquoi GitHub, même en privé ?
-
-Parce qu'il garde l'historique. Vous pouvez voir ce qui a changé, revenir en arrière, documenter le projet et éviter que l'application vive seulement dans un dossier perdu sur un ordinateur.
+L'objectif, à ce stade, n'est pas encore de publier le projet. L'objectif est de garder un dossier propre, compréhensible et facile à transmettre.
 
 ## 14. Poser les questions Shadow IT
 
