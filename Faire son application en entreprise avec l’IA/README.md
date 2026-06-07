@@ -149,9 +149,11 @@ Ce prompt force Codex à ralentir. C'est volontaire. Avant de coder, il doit exp
 
 ## 6. Créer les maquettes avec GPT Image
 
-Codex peut proposer les écrans, mais une maquette visuelle aide beaucoup. Elle donne une direction claire : couleurs, densité, hiérarchie, ambiance.
+Dans votre projet, ouvrez une nouvelle discussion en cliquant sur l'icône crayon à droite du nom du projet. Sur l'image ci-dessous, le projet s'appelle **Faire son APP avec l'IA** : les trois points servent aux options du projet, et le crayon tout à droite sert à démarrer un nouveau clavardage dans ce projet.
 
-Ouvrez ChatGPT, joignez votre image de branding si vous en avez une, puis générez trois maquettes avec ces prompts.
+![Nouvelle discussion dans le projet Codex](./assets/06-nouvelle-discussion-projet.png)
+
+Joignez votre image de branding si vous en avez une, puis générez trois maquettes avec les prompts ci-dessous.
 
 ### Page 1 : Tableau de stock
 
