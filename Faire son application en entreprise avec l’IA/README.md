@@ -410,7 +410,11 @@ Relisez ce fichier. Il doit être compréhensible par une personne métier et pa
 
 Une fois le prototype fonctionnel, gardez une trace propre.
 
-Le plus simple : créer un dépôt GitHub privé.
+Vous pouvez déjà conserver le dossier sur votre ordinateur et en faire une archive `.zip`. C'est une bonne pratique pour partager le prototype avec un collègue ou en discuter avec le service informatique.
+
+GitHub va plus loin : il permet de stocker le projet en ligne, de garder l'historique des modifications et de travailler plus facilement à plusieurs. Dans un prochain article, nous ferons un tutoriel dédié pour apprendre à utiliser GitHub afin de suivre une application et collaborer sur des projets plus poussés.
+
+Pour ce premier exercice, le plus simple est de créer un dépôt GitHub privé.
 
 Demandez à Codex :
 
