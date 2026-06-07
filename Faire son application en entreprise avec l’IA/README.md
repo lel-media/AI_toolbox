@@ -414,7 +414,7 @@ Pour ce premier exercice, nous vous conseillons surtout de conserver le dossier 
 
 Pour aller plus loin, vous pourrez aussi l'héberger sur GitHub. C'est un outil intéressant pour collaborer, partager une application et garder l'historique des modifications. Vous en voyez déjà un exemple ici : ce tutoriel et les fichiers associés sont eux-mêmes disponibles sur GitHub.
 
-Les électrons libres reviendront sur ce sujet dans un prochain article dédié à GitHub, au suivi d'une application et au travail à plusieurs.
+Les électrons libres reviendront sur ce sujet dans un prochain encart dédié à GitHub, au suivi d'une application et au travail à plusieurs.
 
 Pour l'instant, l'objectif reste plus simple : garder un dossier propre, compréhensible et facile à transmettre.
 
