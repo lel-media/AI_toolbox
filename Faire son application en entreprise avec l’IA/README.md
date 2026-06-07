@@ -82,6 +82,13 @@ Dans Codex, sélectionnez le projet **Faire son APP avec l'IA**, puis envoyez ce
 ```text
 Je veux créer une petite application locale de gestion de stock à partir d'un fichier Excel.
 
+Contrainte technique importante :
+je veux une application 100% navigateur, sans backend Python, sans serveur local obligatoire et sans base de données.
+
+L'application doit fonctionner avec des fichiers HTML, CSS et JavaScript que je peux partager à un collègue. L'objectif est qu'il puisse ouvrir le fichier index.html dans son navigateur, importer le fichier Excel fictif, et tester l'application sans installer Python ni lancer de serveur.
+
+Si une librairie JavaScript est nécessaire pour lire le fichier Excel, propose-la, explique son rôle, et privilégie une version locale dans le dossier du projet plutôt qu'un appel CDN.
+
 Avant de créer quoi que ce soit, commence par :
 1. me demander de fournir mon fichier Excel, ou me proposer de générer un fichier Excel fictif si je n'en ai pas ;
 2. analyser la structure attendue du fichier Excel : colonnes nécessaires, exemples de lignes, types de données ;
@@ -116,6 +123,11 @@ Contraintes :
 - ne pas envoyer d'e-mail ;
 - ne pas se connecter à un ERP, CRM ou outil externe ;
 - ne modifier aucun fichier Excel original ;
+- ne créer aucun backend ;
+- ne pas utiliser Python ;
+- ne pas créer de serveur local obligatoire ;
+- ne pas créer de base de données ;
+- garder le traitement du fichier Excel dans le navigateur ;
 - créer une application locale simple ;
 - documenter comment relancer le projet ;
 - expliquer les limites du prototype.
