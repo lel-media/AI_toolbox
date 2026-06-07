@@ -267,7 +267,7 @@ Dans notre essai, Codex a créé une application simple qui fonctionne directeme
 Quand Codex a fini, il peut vous donner une commande de ce type :
 
 ```text
-cd "/Users/macbook/Documents/Faire son APP avec l'IA 2"
+cd "/Users/macbook/Documents/Faire son APP avec l'IA"
 open index.html
 ```
 
