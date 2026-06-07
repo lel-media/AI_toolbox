@@ -333,6 +333,10 @@ Ne change pas la logique de calcul. Modifie seulement l'affichage.
 
 Rechargez la page, vérifiez, puis recommencez si nécessaire.
 
+Voici le résultat après modification : dans la page **Synthèse visuelle**, le camembert a été remplacé par un histogramme horizontal, plus lisible pour comparer les statuts.
+
+![Résultat final de la Synthèse visuelle avec histogramme par statut](./assets/12c-synthese-visuelle-resultat-final.jpg)
+
 Ce passage est important : on apprend à piloter l'IA par correction précise, pas par "fais plus beau".
 
 ## 10. Vérifier où vont les données
