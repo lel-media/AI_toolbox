@@ -307,9 +307,11 @@ http://localhost:4173
 
 Cliquez sur ce lien : l'application s'ouvre dans Codex. Cliquez ensuite sur **Annotation**, puis sélectionnez directement la zone à modifier dans l'interface.
 
-![Annotation Codex dans le live preview](./assets/12-codex-annotation-live-preview.jpg)
+Dans notre cas, nous avons cliqué sur le bloc **Répartition par statut** de la page **Synthèse visuelle** pour demander à Codex de remplacer le camembert par un histogramme.
 
-Exemple :
+![Annotation sur le bloc Répartition par statut](./assets/12-annotation-repartition-statut.jpg)
+
+Prompt utilisé :
 
 ```text
 Dans la page "Synthèse visuelle", le graphique circulaire ne me convient pas.
