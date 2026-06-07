@@ -151,7 +151,7 @@ Ce prompt force Codex à ralentir. C'est volontaire. Avant de coder, il doit exp
 
 Dans votre projet, ouvrez une nouvelle discussion en cliquant sur l'icône crayon à droite du nom du projet. Sur l'image ci-dessous, le projet s'appelle **Faire son APP avec l'IA** : les trois points servent aux options du projet, et le crayon tout à droite sert à démarrer un nouveau clavardage dans ce projet.
 
-![Nouvelle discussion dans le projet Codex](./assets/06-nouvelle-discussion-projet.png)
+![Nouvelle discussion dans le projet Codex](./assets/09-nouvelle-discussion-projet.png)
 
 Joignez votre image de branding si vous en avez une, puis générez trois maquettes avec les prompts ci-dessous.
 
