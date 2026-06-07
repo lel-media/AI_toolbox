@@ -412,25 +412,11 @@ Une fois le prototype fonctionnel, gardez une trace simple.
 
 Pour ce premier exercice, nous vous conseillons surtout de conserver le dossier sur votre ordinateur et d'en faire une archive `.zip`. C'est le plus facile pour partager le prototype avec un collègue ou en discuter avec le service informatique.
 
-Pour aller plus loin, vous pourrez aussi l'héberger sur GitHub. GitHub permet de stocker le projet en ligne, de garder l'historique des modifications et de collaborer plus facilement. Nous y reviendrons dans un prochain article.
+Pour aller plus loin, vous pourrez aussi l'héberger sur GitHub. C'est un outil intéressant pour collaborer, partager une application et garder l'historique des modifications. Vous en voyez déjà un exemple ici : ce tutoriel et les fichiers associés sont eux-mêmes disponibles sur GitHub.
 
-Si vous voulez déjà préparer le dossier pour GitHub, demandez simplement à Codex :
+Les électrons libres reviendront sur ce sujet dans un prochain article dédié à GitHub, au suivi d'une application et au travail à plusieurs.
 
-```text
-Prépare ce projet pour GitHub.
-
-Je veux :
-- vérifier qu'aucune donnée réelle n'est présente ;
-- créer un fichier .gitignore adapté ;
-- me dire quels fichiers garder dans le dossier ;
-- me dire quels fichiers ne jamais partager.
-
-Important :
-Ne pousse rien en ligne pour l'instant.
-Ne partage aucune donnée réelle.
-```
-
-L'objectif, à ce stade, n'est pas encore de publier le projet. L'objectif est de garder un dossier propre, compréhensible et facile à transmettre.
+Pour l'instant, l'objectif reste plus simple : garder un dossier propre, compréhensible et facile à transmettre.
 
 ## 14. Poser les questions Shadow IT
 
