@@ -307,6 +307,10 @@ http://localhost:4173
 
 Cliquez sur ce lien : l'application s'ouvre dans Codex. Cliquez ensuite sur **Annotation**, puis sélectionnez directement la zone à modifier dans l'interface.
 
+Nous vous conseillons de rester dans le live preview de Codex pour cette étape. Tout est au même endroit : l'adresse locale, le bouton de rafraîchissement et le bouton **Annotation**. Si vous ouvrez l'application dans votre navigateur habituel, vous pouvez aussi rafraîchir avec `Cmd + Shift + R` sur Mac ou `Ctrl + Shift + R` sur Windows, mais le live preview reste le plus simple pour annoter précisément un élément.
+
+![Barre du live preview Codex avec le bouton Annotation](./assets/12b-live-preview-toolbar.png)
+
 Dans notre cas, nous avons cliqué sur le bloc **Répartition par statut** de la page **Synthèse visuelle** pour demander à Codex de remplacer le camembert par un histogramme. C'est l'intérêt de l'annotation : Codex comprend précisément quelle zone modifier et peut itérer sur cet élément sans toucher au reste de l'application.
 
 ![Annotation sur le bloc Répartition par statut](./assets/12-annotation-repartition-statut.jpg)
@@ -328,11 +332,6 @@ Ne change pas la logique de calcul. Modifie seulement l'affichage.
 ```
 
 Rechargez la page, vérifiez, puis recommencez si nécessaire.
-
-Si une modification ne s'affiche pas, faites un rechargement complet de la page :
-
-- sur Mac : `Cmd + Shift + R` ;
-- sur Windows : `Ctrl + Shift + R`.
 
 Ce passage est important : on apprend à piloter l'IA par correction précise, pas par "fais plus beau".
 
