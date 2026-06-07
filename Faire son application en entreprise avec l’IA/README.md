@@ -162,7 +162,7 @@ Astuce : si vous avez déjà une identité visuelle, envoyez une capture d'écra
 ### Page 1 : Tableau de stock
 
 ```text
-Créer une maquette UI web pour une application locale de gestion de stock, page "Tableau de stock".
+Créer une image de maquette web UI pour une application locale de gestion de stock, page "Tableau de stock".
 
 Intégrer le branding "Les électrons libres" inspiré de l'image fournie : fond violet profond, texte blanc cassé, accents orange vif, bouton jaune doré, style éditorial énergique et singulier. Logo ou nom "Les électrons libres" visible dans l'en-tête à gauche. Conserver une interface professionnelle, lisible et exploitable.
 
@@ -180,7 +180,7 @@ Style : outil métier local, moderne, dense mais clair, aucune donnée réelle, 
 ### Page 2 : Alertes et priorités
 
 ```text
-Créer une maquette UI web pour une application locale de gestion de stock, page "Alertes et priorités".
+Créer une image de maquette web UI pour une application locale de gestion de stock, page "Alertes et priorités".
 
 Utiliser le branding "Les électrons libres" inspiré de l'image fournie : fond violet profond, blanc cassé, orange vif, jaune doré, typographie expressive pour les titres, interface professionnelle pour les données.
 
@@ -199,7 +199,7 @@ Style : tableau de bord opérationnel, énergique mais lisible, pas de connexion
 ### Page 3 : Synthèse visuelle
 
 ```text
-Créer une maquette UI web pour une application locale de gestion de stock, page "Synthèse visuelle".
+Créer une image de maquette web UI pour une application locale de gestion de stock, page "Synthèse visuelle".
 
 Respecter le branding "Les électrons libres" inspiré de l'image fournie : violet profond dominant, accents orange vif, blanc cassé, jaune doré pour les actions ou KPI importants. Le logo/nom "Les électrons libres" doit apparaître dans l'en-tête.
 
