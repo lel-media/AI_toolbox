@@ -289,9 +289,13 @@ Importez le fichier `stock_fictif_codex.xlsx`, puis testez les trois pages :
 
 ![Application locale avant import du fichier Excel](./assets/09-app-avant-import.png)
 
-![Synthèse visuelle avant import](./assets/10-app-synthese-avant-import.png)
+Page **Alertes et priorités** après import du fichier Excel :
 
-![Synthèse visuelle après import](./assets/11-app-synthese-apres-import.png)
+![Page Alertes et priorités après import](./assets/10-app-alertes-priorites.jpg)
+
+Page **Synthèse visuelle** après import du fichier Excel :
+
+![Page Synthèse visuelle après import](./assets/11-app-synthese-visuelle.jpg)
 
 Si une modification ne s'affiche pas, faites un rechargement complet de la page :
 
