@@ -64,8 +64,12 @@ Faire son APP avec l'IA
 Associez ce projet à un dossier vide sur votre ordinateur. Par exemple :
 
 ```text
-Documents/codex/faire-son-app-stock
+Documents/Faire son APP avec l'IA
 ```
+
+Pour retrouver ce dossier ensuite, cliquez sur les trois points `...` à côté du projet dans Codex, puis choisissez **Afficher dans le Finder** sur Mac, ou l'option équivalente pour afficher le dossier sur Windows.
+
+![Afficher le projet dans le Finder](./assets/05b-afficher-projet-finder.jpg)
 
 Copiez ensuite le fichier [`stock_fictif_codex.xlsx`](./stock_fictif_codex.xlsx) dans ce dossier.
 
