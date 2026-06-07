@@ -307,7 +307,7 @@ http://localhost:4173
 
 Cliquez sur ce lien : l'application s'ouvre dans Codex. Cliquez ensuite sur **Annotation**, puis sélectionnez directement la zone à modifier dans l'interface.
 
-Dans notre cas, nous avons cliqué sur le bloc **Répartition par statut** de la page **Synthèse visuelle** pour demander à Codex de remplacer le camembert par un histogramme.
+Dans notre cas, nous avons cliqué sur le bloc **Répartition par statut** de la page **Synthèse visuelle** pour demander à Codex de remplacer le camembert par un histogramme. C'est l'intérêt de l'annotation : Codex comprend précisément quelle zone modifier et peut itérer sur cet élément sans toucher au reste de l'application.
 
 ![Annotation sur le bloc Répartition par statut](./assets/12-annotation-repartition-statut.jpg)
 
