@@ -380,6 +380,10 @@ Ne supprime jamais le fichier Excel original.
 
 Testez ensuite le bouton avec le fichier fictif.
 
+Une fois les données de test supprimées, l'application revient à un état vide. Vous pouvez alors importer un nouveau fichier Excel, à condition qu'il respecte bien le format attendu : mêmes colonnes, mêmes types de données, et aucune donnée réelle sans validation.
+
+![Suppression des données de test dans l'application](./assets/13-nettoyage-donnees-test.jpg)
+
 ## 12. Créer le fichier LIMITES.md
 
 Un prototype sans limites écrites devient vite dangereux, parce que tout le monde finit par oublier ce qu'il ne sait pas faire.
