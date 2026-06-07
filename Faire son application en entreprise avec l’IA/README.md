@@ -159,6 +159,8 @@ Astuce : si vous avez déjà une identité visuelle, envoyez une capture d'écra
 
 ![Bandeau Les électrons libres utilisé comme inspiration visuelle](./assets/06b-branding-electrons-libres.jpg)
 
+Si vous adaptez l'exercice avec un autre fichier ou une autre identité visuelle, demandez d'abord à Codex de préparer les prompts d'image à partir de votre structure de pages et de vos données fictives.
+
 ### Page 1 : Tableau de stock
 
 ```text
@@ -215,8 +217,6 @@ La page doit montrer :
 ```
 
 Gardez les trois images générées. Vous pouvez les glisser dans Codex ou lui décrire précisément ce que vous voulez reprendre.
-
-Astuce : demandez aussi à Codex de vous préparer des prompts pour GPT Image à partir de la structure de vos pages. Le résultat est souvent meilleur quand la maquette part du vrai jeu de données.
 
 ![Maquette Tableau de stock](./assets/06-maquette-tableau-stock.png)
 
