@@ -339,6 +339,32 @@ Voici le résultat après modification : dans la page **Synthèse visuelle**, le
 
 Ce passage est important : on apprend à piloter l'IA par correction précise, pas par "fais plus beau".
 
+## Bonus : rendre l'application adaptée à tous les formats
+
+Une application locale peut très bien fonctionner sur votre ordinateur, puis devenir difficile à utiliser sur une tablette ou un petit écran. Le symptôme le plus fréquent est une barre de scroll horizontale : on doit glisser de gauche à droite pour voir toute la page.
+
+Le mauvais réflexe serait de demander simplement à Codex de masquer cette barre avec `overflow-x: hidden` sur toute la page. Cela cache le problème, mais cela peut aussi cacher du contenu important. Le bon réflexe consiste à chercher l'élément qui déborde, puis à adapter la mise en page.
+
+Demandez plutôt à Codex :
+
+```text
+Rends toute l'application responsive, sans masquer les débordements avec overflow-x: hidden ou overflow-y: hidden sur body.
+
+Corrige les vraies causes du scroll horizontal :
+- les grilles doivent utiliser des colonnes souples, par exemple minmax(0, 1fr) quand nécessaire ;
+- les tableaux doivent rester lisibles sur petit écran, quitte à devenir des cartes sur tablette et mobile ;
+- les boutons, badges, filtres et champs d'import doivent rester dans leurs conteneurs ;
+- les mots ne doivent pas se couper lettre par lettre ;
+- les badges de statut doivent rester compacts et lisibles sur une ligne ;
+- le bouton d'import Excel doit rester visible en haut sur tous les formats ;
+- la navigation ou la sidebar peut se simplifier ou disparaître sur tablette/mobile si elle prend trop de place ;
+- les sections de synthèse doivent se réorganiser sans chevauchement.
+
+Vérifie le rendu en desktop, tablette et mobile. Corrige les éléments qui débordent au lieu de cacher la barre de scroll.
+```
+
+Une fois la correction faite, testez au moins trois largeurs : écran d'ordinateur, tablette et mobile. L'objectif n'est pas que tout soit identique partout, mais que l'application reste lisible, utilisable et compréhensible sans perdre de contenu.
+
 ## 10. Vérifier où vont les données
 
 Avant d'aller plus loin, posez la question que beaucoup oublient.
