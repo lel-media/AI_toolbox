@@ -1,55 +1,68 @@
-# Les électrons libres - Gestion de stock locale
+# Les electrons libres - Prototype stock local
 
-Prototype local de gestion de stock à partir d'un fichier Excel.
+Prototype local de gestion de stock a partir d'un fichier Excel.
 
 ## Lancer l'application
 
-Depuis ce dossier :
+Ouvrez simplement `index.html` dans un navigateur moderne.
+
+Aucun serveur local n'est obligatoire. Aucun backend, aucune base de donnees et aucune connexion externe ne sont utilises par l'application.
+
+Commande macOS optionnelle depuis ce dossier :
 
 ```bash
-python3 -m pip install -r requirements.txt
-python3 app.py
+open index.html
 ```
 
-Puis ouvrir :
+## Importer un fichier Excel
 
-```text
-http://127.0.0.1:8000
-```
+1. Ouvrez `index.html`.
+2. Cliquez sur `Importer Excel`.
+3. Selectionnez un fichier `.xlsx` ou `.xls`.
 
-Importer ensuite le fichier Excel `stock_fictif_codex.xlsx` depuis l'interface.
+Le fichier Excel original reste intact. L'application lit une copie temporaire en memoire dans le navigateur.
 
-## Format Excel attendu
+## Gestion des donnees chargees
 
-Le prototype attend un onglet avec ces colonnes :
+La page `Tableau de stock` affiche :
 
-| Colonne | Exemple | Rôle |
-|---|---|---|
-| `produit` | `Câble USB-C 1m` | Nom affiché dans le tableau |
-| `categorie` | `Accessoire` | Filtre et regroupement |
-| `stock_actuel` | `12` | Niveau de stock |
-| `stock_minimum` | `20` | Seuil minimum |
-| `ventes_7_jours` | `18` | Vitesse de consommation récente |
-| `delai_reappro_jours` | `5` | Délai fournisseur |
-| `fournisseur` | `Fournisseur A` | Information produit |
-| `dernier_reappro` | `2026-05-10` | Information affichable |
-| `commentaire` | `ventes rapides` | Signal métier complémentaire |
+- le nom de la source chargee ;
+- le nombre de lignes ;
+- l'emplacement des donnees.
 
-Comme le fichier fourni ne contient pas de référence produit, l'application génère des références locales du type `STK-0001`. Le fichier Excel original n'est jamais modifié.
+Les donnees sont uniquement en memoire dans le navigateur. Elles ne sont pas stockees dans un fichier, ni dans une base locale.
 
-## Règles métier
+Le bouton `Supprimer les donnees de test` retire les donnees d'exemple de l'application. Il ne supprime jamais le fichier Excel original.
 
-- Rupture probable : stock sous le minimum ou couverture inférieure au délai de réapprovisionnement.
-- Couverture : `stock_actuel / (ventes_7_jours / 7)`.
-- Stock dormant probable : stock au-dessus du minimum avec ventes très faibles, ou commentaire contenant `dormant`.
-- Priorité de réapprovisionnement : score de 0 à 100 basé sur le stock sous seuil, la couverture, les ventes récentes et le délai fournisseur.
-- Quantité conseillée : estimation locale visant à couvrir le minimum et une courte période de sécurité.
+## Colonnes reconnues
+
+Le prototype reconnait notamment :
+
+- `produit`
+- `categorie`
+- `stock_actuel`
+- `stock_minimum`
+- `ventes_7_jours`
+- `ventes_30j`
+- `delai_reappro_jours`
+- `fournisseur`
+- `reference`
+- `commentaire`
+
+Si aucune reference n'est fournie, l'application genere un identifiant d'affichage temporaire.
+
+## Librairie locale
+
+La lecture Excel est faite avec SheetJS, fichier local :
+
+`libs/xlsx.full.min.js`
+
+Elle sert uniquement a lire le fichier Excel dans le navigateur et a transformer la premiere feuille en donnees exploitables.
 
 ## Limites du prototype
 
-- Les données restent locales et en mémoire pendant la session.
-- Aucun email n'est envoyé.
-- Aucune connexion ERP, CRM ou outil externe n'est utilisée.
-- Le prototype ne modifie pas le fichier Excel original.
-- La valeur financière du stock n'est pas calculée, car le fichier fourni ne contient pas de prix unitaire.
-- Les stocks dormants sont estimés avec les données disponibles ; une vraie date de dernière vente améliorerait la précision.
+- Les donnees ne sont pas sauvegardees apres fermeture de l'onglet.
+- Le prototype lit la premiere feuille du classeur.
+- Les regles de priorite sont volontairement simples.
+- Les graphiques sont des visualisations HTML/CSS, pas des exports Excel.
+- Aucune connexion ERP, CRM, e-mail ou outil externe n'est effectuee.

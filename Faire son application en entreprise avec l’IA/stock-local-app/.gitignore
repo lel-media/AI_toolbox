@@ -1,4 +1,43 @@
-__pycache__/
-*.pyc
+# System files
 .DS_Store
-.venv/
+Thumbs.db
+
+# Local editor and workspace files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment and secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Dependencies and build outputs
+node_modules/
+dist/
+build/
+.cache/
+
+# Local servers and logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Spreadsheet data files
+*.xlsx
+*.xls
+*.csv
+*.tsv
+
+# Local databases
+*.sqlite
+*.sqlite3
+*.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp

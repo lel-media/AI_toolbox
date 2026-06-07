@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Les electrons libres - Stock local</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-name">Les électrons<br>libres</div>
+        <div class="brand-line"></div>
+        <div class="brand-tag">Idées singulières<br>au service du progrès</div>
+      </div>
+
+      <nav class="side-nav" aria-label="Navigation principale">
+        <button class="side-link active" data-page="stock"><span>▦</span>Tableau de stock</button>
+        <button class="side-link" data-page="alerts"><span>⚠</span>Alertes et priorités</button>
+        <button class="side-link" data-page="summary"><span>◔</span>Synthèse visuelle</button>
+      </nav>
+
+      <div class="side-card">
+        <div class="side-card-icon">⚡</div>
+        <strong>Une gestion libre<br>et éclairée</strong>
+        <p>Des données locales pour des décisions simples, sans connexion externe.</p>
+      </div>
+    </aside>
+
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="tabbar" aria-label="Pages">
+          <button class="top-tab active" data-page="stock">Tableau de stock</button>
+          <button class="top-tab" data-page="alerts">Alertes et priorités</button>
+          <button class="top-tab" data-page="summary">Synthèse visuelle</button>
+        </div>
+
+        <div class="top-actions">
+          <label class="import-button">
+            <input id="excelInput" type="file" accept=".xlsx,.xls">
+            <span>↥</span>
+            Importer Excel
+          </label>
+          <div class="profile-badge">EL</div>
+        </div>
+      </header>
+
+      <section class="notice" id="sourceNotice">
+        Données d'exemple affichées. Importez votre fichier Excel fictif pour tester l'application.
+      </section>
+
+      <section class="page active" id="page-stock">
+        <div class="page-title-row">
+          <div>
+            <h1>Tableau de stock</h1>
+            <p>Vue opérationnelle de vos références, filtres et niveaux de couverture.</p>
+          </div>
+          <span class="gold-badge" id="rowCountBadge">0 produits</span>
+        </div>
+
+        <section class="data-panel" aria-label="Données chargées">
+          <div>
+            <span class="eyebrow">Données chargées</span>
+            <h2 id="dataFileName">Données d'exemple</h2>
+            <p id="dataStorageInfo">Les données sont uniquement en mémoire dans le navigateur.</p>
+          </div>
+          <div class="data-stats">
+            <div>
+              <span>Nombre de lignes</span>
+              <strong id="dataRowCount">0</strong>
+            </div>
+            <div>
+              <span>Emplacement</span>
+              <strong id="dataLocation">Mémoire</strong>
+            </div>
+          </div>
+          <button id="deleteSampleData" class="danger-button">Supprimer les données de test</button>
+        </section>
+
+        <section class="notice data-message" id="dataMessage" aria-live="polite" hidden></section>
+
+        <section class="filters-panel">
+          <label class="search-box">
+            <span>⌕</span>
+            <input id="searchInput" type="search" placeholder="Rechercher un produit, une référence...">
+          </label>
+          <label>
+            Catégorie
+            <select id="categoryFilter"></select>
+          </label>
+          <label>
+            Statut
+            <select id="statusFilter"></select>
+          </label>
+          <label class="toggle-row">
+            <input id="gapOnly" type="checkbox">
+            Afficher seulement les écarts
+          </label>
+          <button id="resetFilters" class="ghost-button">↺ Réinitialiser</button>
+        </section>
+
+        <section class="table-card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Référence</th>
+                  <th>Produit</th>
+                  <th>Catégorie</th>
+                  <th>Stock actuel</th>
+                  <th>Stock minimum</th>
+                  <th>Ventes</th>
+                  <th>Couverture estimée</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody id="stockTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <section class="page" id="page-alerts">
+        <div class="page-title-row">
+          <div>
+            <h1>Alertes et priorités</h1>
+            <p>Tableau opérationnel pour prioriser les actions sur les stocks.</p>
+          </div>
+          <span class="updated-label" id="updatedLabel">Dernière mise à jour : locale</span>
+        </div>
+
+        <section class="priority-section">
+          <div class="section-heading">
+            <h2>⚠ Réapprovisionnement urgent</h2>
+            <span id="urgentCount">0 références</span>
+          </div>
+          <div class="priority-grid" id="urgentCards"></div>
+        </section>
+
+        <section class="priority-section">
+          <div class="section-heading">
+            <h2>ᶻᶻ Stocks dormants</h2>
+            <span id="dormantCount">0 références</span>
+          </div>
+          <div class="table-wrap compact">
+            <table>
+              <thead>
+                <tr>
+                  <th>Produit</th>
+                  <th>Référence</th>
+                  <th>Catégorie</th>
+                  <th>Ventes</th>
+                  <th>Stock actuel</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody id="dormantTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <section class="page" id="page-summary">
+        <div class="page-title-row">
+          <div>
+            <h1>Synthèse visuelle</h1>
+            <p>Vue d'ensemble de votre stock local après import Excel.</p>
+          </div>
+          <span class="gold-badge" id="sourceBadge">Mode exemple</span>
+        </div>
+
+        <section class="kpi-grid">
+          <article class="kpi-card">
+            <div class="kpi-icon cube">▧</div>
+            <div><span>Produits</span><strong id="kpiProducts">0</strong><small>références actives</small></div>
+          </article>
+          <article class="kpi-card">
+            <div class="kpi-icon alert">⚠</div>
+            <div><span>Ruptures probables</span><strong id="kpiRisk">0</strong><small>références</small></div>
+          </article>
+          <article class="kpi-card">
+            <div class="kpi-icon dormant">☾</div>
+            <div><span>Stocks dormants</span><strong id="kpiDormant">0</strong><small>références</small></div>
+          </article>
+          <article class="kpi-card">
+            <div class="kpi-icon value">◎</div>
+            <div><span>Stock total</span><strong id="kpiUnits">0</strong><small>unités</small></div>
+          </article>
+        </section>
+
+        <section class="summary-grid">
+          <article class="panel">
+            <div class="section-heading">
+              <h2>▧ Répartition du stock par catégorie</h2>
+            </div>
+            <div class="bar-chart" id="categoryChart"></div>
+          </article>
+          <article class="panel">
+            <div class="section-heading">
+              <h2>↗ Répartition par statut</h2>
+            </div>
+            <div class="status-bars" id="statusBars"></div>
+          </article>
+          <article class="panel actions-panel">
+            <div class="section-heading">
+              <h2>⚡ À retenir</h2>
+            </div>
+            <ol id="actionList"></ol>
+          </article>
+        </section>
+
+        <section class="insight-strip">
+          <div class="target-icon">◎</div>
+          <div>
+            <h2>Cap sur l'essentiel</h2>
+            <p id="summaryText">Importez un fichier Excel pour afficher une synthèse locale.</p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="libs/xlsx.full.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
