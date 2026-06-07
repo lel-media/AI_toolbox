@@ -302,6 +302,16 @@ Si une modification ne s'affiche pas, faites un rechargement complet de la page 
 
 Ne cherchez pas à corriger le code vous-même si vous débutez. Décrivez ce que vous voyez.
 
+Pour une correction précise, utilisez la fonction **Annotation** de Codex. Demandez d'abord à Codex de lancer le live preview de l'application. Il peut créer temporairement ce qu'il faut pour vous donner un lien local, par exemple :
+
+```text
+http://localhost:4173
+```
+
+Cliquez sur ce lien : l'application s'ouvre dans Codex. Cliquez ensuite sur **Annotation**, puis sélectionnez directement la zone à modifier dans l'interface.
+
+![Annotation Codex dans le live preview](./assets/12-codex-annotation-live-preview.jpg)
+
 Exemple :
 
 ```text
