@@ -155,6 +155,10 @@ Dans votre projet, ouvrez une nouvelle discussion en cliquant sur l'icône crayo
 
 Joignez votre image de branding si vous en avez une, puis générez trois maquettes avec les prompts ci-dessous.
 
+Astuce : si vous avez déjà une identité visuelle, envoyez une capture d'écran dans la nouvelle discussion et demandez à l'IA de s'en inspirer. Dans notre cas, nous avons utilisé une capture du bandeau **Les électrons libres** comme point de départ pour les couleurs, l'ambiance et le style de l'application.
+
+![Bandeau Les électrons libres utilisé comme inspiration visuelle](./assets/06b-branding-electrons-libres.jpg)
+
 ### Page 1 : Tableau de stock
 
 ```text
