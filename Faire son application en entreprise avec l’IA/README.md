@@ -287,8 +287,6 @@ Importez le fichier `stock_fictif_codex.xlsx`, puis testez les trois pages :
 - Alertes et priorités ;
 - Synthèse visuelle.
 
-![Application locale avant import du fichier Excel](./assets/09-app-avant-import.png)
-
 Page **Alertes et priorités** après import du fichier Excel :
 
 ![Page Alertes et priorités après import](./assets/10-app-alertes-priorites.jpg)
@@ -296,11 +294,6 @@ Page **Alertes et priorités** après import du fichier Excel :
 Page **Synthèse visuelle** après import du fichier Excel :
 
 ![Page Synthèse visuelle après import](./assets/11-app-synthese-visuelle.jpg)
-
-Si une modification ne s'affiche pas, faites un rechargement complet de la page :
-
-- sur Mac : `Cmd + Shift + R` ;
-- sur Windows : `Ctrl + Shift + R`.
 
 ## 9. Modifier visuellement l'application
 
@@ -333,6 +326,11 @@ Ne change pas la logique de calcul. Modifie seulement l'affichage.
 ```
 
 Rechargez la page, vérifiez, puis recommencez si nécessaire.
+
+Si une modification ne s'affiche pas, faites un rechargement complet de la page :
+
+- sur Mac : `Cmd + Shift + R` ;
+- sur Windows : `Ctrl + Shift + R`.
 
 Ce passage est important : on apprend à piloter l'IA par correction précise, pas par "fais plus beau".
 
