@@ -197,4 +197,4 @@ Cette réversibilité fait partie du montage. Un assistant personnel utile doit 
 > [!NOTE]
 > **Interface observée**
 >
-> Captures réalisées le 23 août 2026 sur une interface ChatGPT en français. Les noms, écrans, plugins disponibles et réglages dépendent du forfait, de l’espace de travail et des décisions de l’administrateur. Les comptes Notion et Google Calendar n’ont pas été reliés pendant la réalisation des captures.
+> Captures réalisées le 23 août 2026 sur une interface ChatGPT en français. Les noms, écrans, plugins disponibles et réglages dépendent du forfait, de l’espace de travail et des décisions de l’administrateur.
