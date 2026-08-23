@@ -43,7 +43,7 @@ Ajoutez ensuite une vue filtrée : `Statut` n’est pas `Terminé` et `Statut` n
 
 Pour le premier essai, ajoutez seulement trois projets fictifs ou non sensibles. L’un doit avoir une échéance proche, le deuxième un blocage et le troisième aucune action. Ce petit jeu de test permet de voir immédiatement si le brief trie bien l’information et signale ce qui manque.
 
-![Base de démonstration Notion : trois projets, dont un bloqué et un sans prochaine action](./images/08-base-notion-demonstration.jpg)
+![Base de démonstration Notion : trois projets, dont un bloqué et un sans prochaine action](./images/08-base-notion-verifiee.png)
 
 *Base de démonstration réellement utilisée : trois projets, dont un bloqué et un sans prochaine action.*
 
@@ -85,7 +85,7 @@ Installez le plugin et connectez le compte qui porte réellement vos rendez-vous
 
 L’interface observée lors de ce tutoriel classe Google Calendar parmi les plugins capables d’interagir et d’écrire. La règle de départ reste donc stricte : consulter les événements, jamais les créer, les déplacer, les supprimer ou inviter quelqu’un.
 
-![Agenda de démonstration avec deux rendez-vous à 09:30 et 14:00](./images/09-agenda-rendez-vous-demonstration.jpg)
+![Agenda de démonstration avec deux rendez-vous à 09:30 et 14:00](./images/09-agenda-verifie.png)
 
 *Avant le lancement, les deux rendez-vous de démonstration apparaissent bien à 09:30 et 14:00.*
 
@@ -135,7 +135,7 @@ Contraintes :
 - Chaque affirmation importante doit renvoyer à sa source.
 ```
 
-![Brief obtenu : ordre chronologique, priorités P1/P2/P3, blocage et information manquante](./images/10-brief-resultat-attendu.jpg)
+![Brief obtenu : ordre chronologique, priorités P1/P2/P3, blocage et information manquante](./images/10-bilan-work-verifie.png)
 
 *Résultat attendu : les rendez-vous sont dans l’ordre chronologique, les dossiers sont classés P1, P2 et P3, le blocage est signalé, et les champs vides portent la mention « information manquante ».*
 
