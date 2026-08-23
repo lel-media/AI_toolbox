@@ -113,22 +113,22 @@ N'ajoutez encore ni Notion, ni messagerie, ni routine. Le profil spécialisé se
 
 Un [profil](https://hermes-agent.nousresearch.com/docs/user-guide/profiles) est un dossier Hermes à part : configuration, mémoire, `SOUL.md`, outils, tâches Cron. Sans profil séparé, votre chief of staff mélangerait ses consignes avec vos autres usages.
 
-Dans le Desktop, le [mode Bot](https://hermes-agent.nousresearch.com/docs/user-guide/bot-mode) affiche vos profils comme une liste d'agents. Un Bot n'est pas une nouvelle technologie : c'est le même profil, vu dans l'interface.
+Dans le Desktop, le [mode Bot](https://hermes-agent.nousresearch.com/docs/user-guide/bot-mode) affiche vos profils comme une liste d'agents. L'onglet **Bots** est le point d'entrée normal : cliquez sur un Bot pour ouvrir son **Bot Chat**, la conversation persistante qui lui est réservée. Un Bot n'est pas une nouvelle technologie : c'est le même profil, présenté comme un agent permanent avec son identité, ses outils et ses routines.
 
 ### Depuis l'interface
 
-1. Ouvrez la page **Profiles** ou l'onglet **Bots**, selon l'interface affichée.
-2. Cliquez sur **New Profile**, **New Agent** ou **Nouvel agent**.
+1. Ouvrez l'onglet **Bots**.
+2. Cliquez sur **New Agent**.
 3. Donnez le nom `chief-of-staff`.
 4. Ajoutez un titre simple, par exemple `Chief of staff`.
 5. Ajoutez une description du rôle, par exemple : prépare un brief court, lit Notion, ne décide pas, ne modifie rien.
-6. Dans **Clone config from**, choisissez **None (blank)**. Ne cochez pas **Clone everything**, qui recopierait aussi l'état, les skills et d'autres données du profil principal.
-7. Sur les versions qui affichent **Fresh profile** et **Share keys & accounts with the main profile**, choisissez le profil neuf et décochez le partage si vous voulez des identifiants distincts. Ce réglage est séparé du clonage.
-8. Validez, sélectionnez ce nouveau profil, puis lancez sa configuration de modèle.
+6. Ouvrez **Advanced**, puis choisissez **Fresh profile (bundled skills)**. Cette option crée un profil neuf avec les skills fournis par Hermes. **Create empty** saute ces skills ; elle n'est utile que si vous voulez réellement partir d'un profil vide.
+7. Décidez séparément si le Bot doit partager les clés et comptes du profil principal. Pour cet essai, laissez **Share keys & accounts with the main profile** décoché, puis configurez explicitement le compte voulu dans le nouveau profil.
+8. Validez avec **Create Agent**, sélectionnez ce Bot, puis contrôlez le fournisseur et le modèle qu'il utilise.
 
-![Créer un profil Hermes séparé nommé chief-of-staff](./images/01-creer-profil-hermes.png)
+![Créer le chief-of-staff dans le mode Bots de Hermes](./images/05-creer-chief-of-staff-dans-bot-mode.png)
 
-*Dans l'interface v0.20.3 testée ici, `None (blank)` évite de cloner la configuration et l'état du profil principal. Vérifiez séparément le partage des comptes et des clés si votre version propose ce réglage.*
+*Le formulaire **New Agent** de Bot Mode sépare bien deux choix : partir d'un profil neuf avec les skills fournis par Hermes, puis partager ou non les clés et comptes du profil principal. Le modèle affiché reste hérité tant que vous n'en avez pas configuré un autre.*
 
 ### Depuis le terminal
 
@@ -169,7 +169,7 @@ ou, une fois l'alias créé :
 chief-of-staff doctor
 ```
 
-Ouvrez enfin une nouvelle conversation dans ce profil et envoyez ce test :
+Dans **Bots**, cliquez enfin sur `chief-of-staff` pour ouvrir son Bot Chat canonique, puis envoyez ce test :
 
 ```text
 Réponds en une phrase : es-tu prêt à travailler en lecture seule ?
@@ -223,7 +223,7 @@ que j'ai construite.
 - Les secrets, mots de passe, jetons ou identifiants dans tes réponses.
 ```
 
-Enregistrez. Ouvrez ensuite une **nouvelle** conversation sur ce profil : un `SOUL.md` modifié se comporte le plus clairement sur une session neuve.
+Enregistrez, puis revenez dans le Bot Chat canonique. Utilisez `/compact` pour condenser son contexte avant de poursuivre. Dans Bot Mode, `/new` et `/reset` exécutent en réalité `/compact` : ils condensent cette conversation persistante au lieu de créer un second fil indépendant.
 
 ## 5. Garder les outils au minimum
 
@@ -298,7 +298,7 @@ Pendant l'autorisation :
 hermes -p chief-of-staff mcp configure notion
 ```
 
-Redémarrez la conversation du profil pour que les outils apparaissent.
+Revenez dans le Bot Chat canonique pour que les outils apparaissent. Si vous voulez repartir d'un contexte plus léger, utilisez `/compact`.
 
 ![Connecter Notion depuis le catalogue MCP de Hermes](./images/02-connecteur-notion-mcp.png)
 
@@ -322,7 +322,7 @@ Si quelque chose vous paraît trop large, retirez Notion, rouvrez `hermes tools`
 
 ## 8. Test manuel avec un prompt complet
 
-Ouvrez une **nouvelle** conversation dans le profil `chief-of-staff`. Ne programmez encore aucune routine.
+Dans **Bots**, sélectionnez `chief-of-staff`, ouvrez son Bot Chat canonique et utilisez `/compact` si le contexte précédent est devenu trop long. Ne programmez encore aucune routine.
 
 Copiez ce prompt tel quel pour le premier essai. Adaptez seulement le nom de la vue Notion si le vôtre est différent.
 
@@ -372,6 +372,10 @@ Contraintes :
 
 Le premier résultat n'a pas besoin d'être élégant. Il doit être **vérifiable**.
 
+![Tester le chief-of-staff dans son Bot Chat canonique](./images/04-hermes-bot-mode-roster.png)
+
+*Le Bot Chat répond ici à partir de deux projets fictifs fournis pour le test, tandis que la liste des Bots et le panneau des routines restent visibles. Cette capture valide le parcours dans Bot Mode et le comportement manuel ; elle ne prouve pas encore que Notion est connecté.*
+
 ## 9. Validation factuelle
 
 N'ajoutez aucune automatisation tant que ces contrôles n'ont pas été faits **par vous**, dans les pages Notion, pas seulement dans le brief.
@@ -396,27 +400,33 @@ Si un point échoue, corrigez d'abord la source ou le prompt, puis relancez **ma
 | Trop de bruit | « Ne conserve que ce qui change la journée ou demande une préparation avant demain. » |
 | Une source manque sans avertissement | « Commence toujours par l'état de chaque source. » |
 
-Répétez le prompt complet jusqu'à ce que le comportement soit stable. Ce tutoriel ne fournit volontairement **aucun** exemple de brief réussi : le vôtre doit venir de vos pages, pas d'un texte recopié.
+Répétez le prompt complet jusqu'à ce que le comportement soit stable. La capture précédente n'est pas un exemple de brief Notion réussi : le vrai résultat doit venir de vos pages, pas d'un texte recopié ni de données fournies directement dans le chat.
 
 ## 10. Programmer Cron seulement après validation
 
-Les [tâches Cron](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron) de Hermes sont des routines planifiées. Dans le Desktop, le mode Bot les affiche comme des **Routines** à côté du Bot concerné. Ce sont les mêmes jobs.
+Les [tâches Cron](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron) de Hermes sont des routines planifiées. Dans le Desktop, Bot Mode les affiche à côté du Bot sous le nom **Routines** — ou **CRONJOBS** dans l'interface v0.20.3 capturée ici. Il s'agit des mêmes jobs, nommés sous la forme `[bot:nom-du-bot] nom-de-la-routine`.
+
+La documentation Bot Mode actuelle indique que le résultat d'une Routine revient dans le Bot Chat du Bot. L'interface v0.20.3 testée ici a toutefois enregistré la routine avec une livraison `local`, et sa commande refuse encore la destination `bot-chat`. Vérifiez donc le comportement de votre version au lieu de modifier la destination à l'aveugle.
 
 Ne les activez pas « pour gagner du temps ». Une routine répète aussi les erreurs.
 
 Quand le brief manuel est devenu prévisible :
 
 1. Restez dans le profil `chief-of-staff`.
-2. Dans le Desktop, ouvrez l'onglet **Bots**, sélectionnez `chief-of-staff`, puis le panneau **Routines**.
+2. Dans le Desktop, ouvrez l'onglet **Bots**, sélectionnez `chief-of-staff`, puis cliquez sur le `+` du panneau **Routines** ou **CRONJOBS**.
 3. Créez une routine aux jours et à l'heure que vous contrôlez, par exemple un jour ouvré à 7 h 30, heure de Paris.
 4. Collez une consigne **aussi stricte** que le prompt manuel, pas une version plus large.
-5. Livrez d'abord le résultat en local et vérifiez-le avant d'ajouter une messagerie.
+5. Déclenchez une première exécution. Relisez-la dans le Bot Chat si votre version l'y publie ; sinon, contrôlez-la avec l'historique Cron présenté plus bas. N'ajoutez une messagerie qu'après cette vérification.
 
-![Programmer une routine Hermes après validation manuelle](./images/03-programmer-routine-hermes.png)
+![Créer la routine Brief matinal dans Bot Mode](./images/06-routine-chief-of-staff-dans-bot-mode.png)
 
-*Le texte est abrégé dans cette capture : collez dans la routine le prompt complet que vous avez validé. Le formulaire associe aussi le profil, l'horaire, la destination et d'éventuelles skills dédiées.*
+*Le texte est abrégé dans cette capture : collez dans la routine le prompt complet que vous avez validé. Ici, **Weekdays** et **7:30 AM** correspondent à une exécution du lundi au vendredi à 7 h 30, dans le fuseau de la machine.*
 
-Une tâche planifiée est exécutée par la passerelle Hermes. Dans le Desktop, elle tourne avec l'application. Pour une installation en ligne de commande, installez le service du profil, puis contrôlez son état :
+![Routine Brief matinal active dans le panneau CRONJOBS](./images/07-routine-active-dans-bot-mode.png)
+
+*La carte **Brief matinal** confirme que la routine est créée et active pour ce Bot. Elle ne prouve pas encore qu'une exécution a réussi : déclenchez et relisez la première exécution avec les commandes ci-dessous.*
+
+Une tâche planifiée est exécutée par la passerelle du profil Hermes. Le fait qu'elle apparaisse dans le Desktop ne suffit pas à prouver que cette passerelle tourne. Contrôlez son état ; lors du test en v0.20.3, il a fallu installer la passerelle du profil même avec l'application ouverte :
 
 ```bash
 hermes -p chief-of-staff gateway install
@@ -435,11 +445,13 @@ La valeur attendue est `deny`, qui est la valeur par défaut. Si elle a été ch
 hermes -p chief-of-staff config set approvals.cron_mode deny
 ```
 
-Équivalent terminal, une fois seulement que le test manuel est bon :
+Variante Cron locale testée sur Hermes v0.20.3, une fois seulement que le test manuel est bon :
 
 ```bash
 hermes -p chief-of-staff cron create --name "Brief matinal" --deliver local "30 7 * * 1-5" "Prépare mon brief chief of staff en lecture seule à partir de la vue Notion Brief chief of staff. Ne crée, ne modifie, ne déplace et ne supprime rien. Ne contacte personne. Commence par l'état de Notion. Donne ensuite trois points à retenir, les dossiers actifs avec prochaine action, échéance, blocage et lien, trois préparations maximum, puis les informations manquantes. Distingue faits, déductions et inconnues. Ignore les dossiers terminés ou archivés."
 ```
+
+Cette commande crée un job Cron livré localement ; elle ne reproduit pas à l'identique la destination d'une Routine Bot Mode récente. Ne remplacez pas `local` par `bot-chat` sans vérifier la version installée : ce dernier libellé a été rejeté lors du test en v0.20.3.
 
 L'expression `30 7 * * 1-5` signifie « à 7 h 30, du lundi au vendredi » dans le fuseau de la machine qui exécute Hermes. Adaptez-la, puis relisez le job :
 
@@ -470,7 +482,7 @@ Une configuration utile doit pouvoir être éteinte aussi simplement qu'elle a �
 - [ ] `hermes doctor` a été lancé après l'installation et ses blocages utiles ont été compris.
 - [ ] Le profil `chief-of-staff` existe à part, créé dans l'interface ou avec `hermes profile create chief-of-staff --description`.
 - [ ] `hermes -p chief-of-staff setup model` a configuré le modèle de ce profil et vous avez vérifié le compte ainsi que le partage éventuel des identifiants.
-- [ ] Une conversation simple répond dans ce profil, sans Notion et sans Cron.
+- [ ] Le Bot Chat canonique de `chief-of-staff` répond, sans Notion et sans Cron.
 - [ ] Vous savez que `chief of staff` est **votre** configuration, pas un preset officiel.
 - [ ] `SOUL.md` du profil décrit l'identité, sans secret.
 - [ ] Les outils inutiles sont éteints. Cron était éteint pendant les tests manuels.
@@ -478,7 +490,7 @@ Une configuration utile doit pouvoir être éteinte aussi simplement qu'elle a �
 - [ ] Le prompt complet a été lancé à la main.
 - [ ] Chaque point important a été vérifié dans la page d'origine.
 - [ ] Aucune page n'a été modifiée pendant l'essai.
-- [ ] Cron n'a été programmé **qu'après** cette validation.
+- [ ] Bot Mode affiche la routine, programmée **seulement après** cette validation.
 - [ ] La passerelle du profil fonctionne et `approvals.cron_mode` vaut `deny`.
 - [ ] La première exécution a été déclenchée manuellement et relue dans l'historique.
 - [ ] Vous savez pauser la routine et révoquer Notion.
@@ -502,6 +514,6 @@ Documentation utile en plus, sans remplacer les pages ci-dessus : [installation]
 > [!NOTE]
 > **Interface observée**
 >
-> Captures réalisées le 23 août 2026 sur le tableau de bord local de Hermes Agent v0.20.3. Les noms des menus peuvent évoluer ; les commandes et les règles de sécurité ci-dessus ont été recoupées avec la documentation officielle à cette date.
+> Captures réalisées le 23 août 2026 directement dans **Hermes Desktop Bot Mode**, avec Hermes Agent v0.20.3. Cette version affiche encore **CRONJOBS**, là où la documentation actuelle parle de **Routines**. Les noms des menus peuvent évoluer ; les commandes et les règles de sécurité ci-dessus ont été recoupées avec la documentation officielle à cette date.
 >
-> Le même jour, le parcours local a été rejoué avec un profil séparé sans clone : sélection du fournisseur et du modèle, chargement d'un `SOUL.md` dédié, brief manuel sur deux projets fictifs, détection de deux informations manquantes, installation de la passerelle, création d'une routine Cron et exécution manuelle réussie. Le profil, la routine et le service de démonstration ont ensuite été supprimés.
+> Le même jour, le parcours local a été rejoué de bout en bout : création du Bot `chief-of-staff` depuis **New Agent**, profil neuf avec clés partagées désactivées, brief manuel sur deux projets fictifs dans son Bot Chat, création de la routine **Brief matinal** du lundi au vendredi à 7 h 30, installation de la passerelle du profil et exécution manuelle locale réussie. Le profil, la routine et le service de démonstration ont ensuite été supprimés.
