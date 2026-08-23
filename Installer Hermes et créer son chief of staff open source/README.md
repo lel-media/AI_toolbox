@@ -1,10 +1,12 @@
-# Installer Hermes et créer son chief of staff open source
+# Installer Hermes Bot, l'alternative open source à Grok Bot
 
-Ce tutoriel vous aide à installer [Hermes Agent](https://hermes-agent.nousresearch.com/), puis à construire **vous-même** une configuration personnelle que nous appellerons `chief of staff`.
+Ce tutoriel vous aide à installer [Hermes Agent](https://hermes-agent.nousresearch.com/), puis à utiliser son **Bot Mode** pour construire un agent permanent. Le cas pratique sera un `chief-of-staff` qui prépare un brief à partir de Notion et peut l'exécuter selon une routine.
 
-`chief of staff` n'est **pas** un preset officiel, ni un métier livré avec Hermes. C'est un nom que vous donnez à un profil séparé, avec ses propres consignes, ses propres outils et, plus tard seulement, sa propre routine. Vous pouvez l'appeler autrement ; le parcours reste le même.
+« Hermes Bot » n'est pas un logiciel distinct : c'est la présentation, dans l'interface, d'un profil Hermes avec sa propre identité, sa mémoire, ses outils et ses routines. De la même façon, `chief-of-staff` n'est **pas** un preset officiel. C'est le nom du Bot que vous allez configurer vous-même.
 
-L'objectif est étroit : obtenir un assistant de préparation qui lit peu de sources, produit un brief court, et n'agit pas à votre place. Il ne doit ni envoyer de message, ni modifier une page, ni programmer quoi que ce soit tant que vous n'avez pas vérifié un résultat à la main.
+On peut le présenter comme une alternative open source à Grok Bot, à condition de ne pas les confondre. Grok Bot fournit un ordinateur dans le cloud et une expérience gérée ; Hermes fournit une couche agentique sous licence MIT que vous installez, configurez et sécurisez sur la machine de votre choix. Ce contrôle supplémentaire demande aussi davantage de mise en place et de maintenance.
+
+L'objectif reste étroit : obtenir un Bot de préparation qui lit peu de sources, produit un brief court et n'agit pas à votre place. Il ne doit ni envoyer de message, ni modifier une page, ni programmer quoi que ce soit tant que vous n'avez pas vérifié un résultat à la main.
 
 Comptez une heure pour l'installation et le premier profil, puis quelques essais manuels avant toute automatisation.
 
@@ -13,12 +15,12 @@ Comptez une heure pour l'installation et le premier profil, puis quelques essais
 Vous allez :
 
 1. installer Hermes sur votre ordinateur ;
-2. vérifier qu'une conversation simple fonctionne ;
-3. créer un profil séparé nommé `chief-of-staff` ;
-4. écrire son identité dans `SOUL.md` ;
-5. n'activer que le minimum d'outils, plus Notion via le catalogue MCP ;
-6. tester un prompt complet à la main ;
-7. vérifier les faits dans les sources ;
+2. vérifier l'installation ;
+3. créer et configurer un profil séparé nommé `chief-of-staff` ;
+4. vérifier qu'une conversation simple fonctionne dans ce profil ;
+5. écrire son identité dans `SOUL.md` ;
+6. n'activer que le minimum d'outils, plus Notion via le catalogue MCP ;
+7. tester un prompt complet et vérifier ses faits ;
 8. programmer une routine Cron **seulement après** cette validation.
 
 Dès le départ, posez ces règles :
@@ -36,7 +38,7 @@ Dès le départ, posez ces règles :
 
 ### Licence : ce qui est ouvert, ce qui ne l'est pas
 
-Hermes Agent est publié sous licence [MIT](https://github.com/NousResearch/hermes-agent). Le logiciel que vous installez est donc open source.
+Hermes Agent est publié sous [licence MIT](https://github.com/NousResearch/hermes-agent/blob/main/LICENSE). Le logiciel que vous installez est donc open source.
 
 Cela ne rend pas gratuit ni ouvert tout ce que vous branchez ensuite :
 
@@ -45,6 +47,18 @@ Cela ne rend pas gratuit ni ouvert tout ce que vous branchez ensuite :
 - les **services connectés** (Notion, et tout autre MCP) restent des produits tiers, souvent propriétaires, parfois payants.
 
 Vous construisez une configuration open source **autour** de services qui, eux, peuvent ne pas l'être.
+
+### Hermes Bot et Grok Bot ne proposent pas le même compromis
+
+| | Grok Bot | Hermes Bot |
+| --- | --- | --- |
+| Mise en route | Service géré, conçu pour recevoir directement du travail par message | Agent à installer et à configurer |
+| Exécution | Ordinateur dans le cloud fourni avec le service | Votre ordinateur, un serveur ou un environnement isolé choisi par vous |
+| Modèle et outils | Pile intégrée au produit | Fournisseur, modèle, tools, MCP et skills configurables |
+| Contrôle | Expérience plus clé en main | Code Hermes sous licence MIT, composants remplaçables |
+| Contrepartie | Dépendance au service et à ses offres | Installation, mises à jour, permissions et sécurité à votre charge |
+
+Ce tutoriel ne cherche donc pas à reproduire toutes les fonctions de Grok Bot. Il construit le même type de surface — un agent identifiable, joignable et capable d'exécuter une routine — avec une architecture que vous pouvez inspecter et adapter.
 
 ## 1. Installer Hermes
 
@@ -83,41 +97,17 @@ Sur Windows natif, la documentation officielle propose plutôt une commande Powe
 
 Après l'installation, vous devez pouvoir lancer `hermes` sans message d'erreur du type « commande introuvable ».
 
-## 2. Réglage de base : `hermes setup`, `hermes model`, `hermes doctor`
+## 2. Vérifier l'installation avant de connecter une source
 
-Ne créez pas encore le chief of staff. D'abord, Hermes doit simplement répondre.
-
-Dans le terminal :
-
-```bash
-hermes setup
-```
-
-Sur une installation neuve, trois modes sont proposés. Pour ce tutoriel, choisissez **Blank Slate** si vous le voyez : Hermes part alors avec le minimum (modèle, fichiers, terminal) et rien d'autre. Si vous préférez aller vite, **Quick Setup (Nous Portal)** convient aussi, à condition de désactiver ensuite les outils inutiles.
-
-Puis choisissez le modèle :
-
-```bash
-hermes model
-```
-
-Prenez un fournisseur que vous avez déjà le droit d'utiliser. Vous n'avez pas besoin du modèle le plus cher. Vous avez besoin d'un modèle qui répond, avec suffisamment de contexte pour un brief.
-
-Enfin, demandez à Hermes de vérifier l'installation :
+Demandez d'abord à Hermes de contrôler son environnement :
 
 ```bash
 hermes doctor
 ```
 
-Si `hermes doctor` signale un problème, corrigez-le **avant** d'ajouter un profil, Notion ou une routine. La [documentation Quickstart](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart) le dit clairement : une conversation simple doit marcher avant d'empiler des fonctions.
+Le diagnostic peut afficher des avertissements pour des fournisseurs ou des fonctions facultatives que vous n'utilisez pas. Ils ne bloquent pas forcément ce tutoriel. En revanche, corrigez avant de continuer tout problème qui concerne l'installation, le fournisseur de modèle que vous avez choisi ou la connexion nécessaire à une conversation simple.
 
-Dans le Desktop, les mêmes étapes apparaissent souvent comme un assistant de premier lancement (fournisseur, modèle, diagnostic). Suivez-le jusqu'à pouvoir envoyer un message test, par exemple :
-
-```text
-Réponds en une phrase : es-tu prêt à travailler en lecture seule ?
-```
-
-Vous devez obtenir une réponse. Si ce n'est pas le cas, arrêtez-vous ici.
+N'ajoutez encore ni Notion, ni messagerie, ni routine. Le profil spécialisé sera configuré séparément à l'étape suivante.
 
 ## 3. Créer un profil séparé `chief-of-staff`
 
@@ -127,15 +117,18 @@ Dans le Desktop, le [mode Bot](https://hermes-agent.nousresearch.com/docs/user-g
 
 ### Depuis l'interface
 
-1. Ouvrez l'onglet **Bots** (à côté des sessions).
-2. Cliquez sur **New Agent** / **Nouvel agent**.
+1. Ouvrez la page **Profiles** ou l'onglet **Bots**, selon l'interface affichée.
+2. Cliquez sur **New Profile**, **New Agent** ou **Nouvel agent**.
 3. Donnez le nom `chief-of-staff`.
 4. Ajoutez un titre simple, par exemple `Chief of staff`.
 5. Ajoutez une description du rôle, par exemple : prépare un brief court, lit Notion, ne décide pas, ne modifie rien.
-6. Partez d'un profil **vide** ou **frais**, pas d'un clone de votre profil principal.
-7. Validez.
+6. Dans **Clone config from**, choisissez **None (blank)**. Ne cochez pas **Clone everything**, qui recopierait aussi l'état, les skills et d'autres données du profil principal.
+7. Sur les versions qui affichent **Fresh profile** et **Share keys & accounts with the main profile**, choisissez le profil neuf et décochez le partage si vous voulez des identifiants distincts. Ce réglage est séparé du clonage.
+8. Validez, sélectionnez ce nouveau profil, puis lancez sa configuration de modèle.
 
 ![Créer un profil Hermes séparé nommé chief-of-staff](./images/01-creer-profil-hermes.png)
+
+*Dans l'interface v0.20.3 testée ici, `None (blank)` évite de cloner la configuration et l'état du profil principal. Vérifiez séparément le partage des comptes et des clés si votre version propose ce réglage.*
 
 ### Depuis le terminal
 
@@ -143,15 +136,28 @@ Dans le Desktop, le [mode Bot](https://hermes-agent.nousresearch.com/docs/user-g
 hermes profile create chief-of-staff --description "Prépare un brief court à partir de sources autorisées, en lecture seule. Ne décide pas, n'écrit pas, ne contacte personne."
 ```
 
-Le drapeau `--description` sert à expliquer le rôle du profil. Ce texte n'est pas un preset officiel : c'est **votre** phrase.
+Cette commande crée un profil séparé sans cloner la configuration, la mémoire ni l'état du profil principal. Hermes y sème ses skills intégrés. Selon la version et le fournisseur, l'authentification peut toutefois utiliser un magasin partagé : la commande suivante sert aussi à contrôler le compte et le modèle réellement utilisés. Le drapeau `--description` explique le rôle ; ce texte n'est pas un preset officiel, mais **votre** phrase.
+
+Configurez ensuite uniquement le fournisseur et le modèle **dans ce profil** :
+
+```bash
+hermes -p chief-of-staff setup model
+```
+
+Cette commande évite de relancer les réglages du terminal, des outils ou de la passerelle. Si vous souhaitez changer de modèle plus tard, utilisez :
+
+```bash
+hermes -p chief-of-staff model
+```
 
 Vérifiez que le profil existe :
 
 ```bash
 hermes profile list
+hermes profile show chief-of-staff
 ```
 
-Pour travailler **dans** ce profil :
+Contrôlez maintenant ce profil :
 
 ```bash
 hermes -p chief-of-staff doctor
@@ -163,7 +169,13 @@ ou, une fois l'alias créé :
 chief-of-staff doctor
 ```
 
-À partir d'ici, tout le reste du tutoriel se fait dans `chief-of-staff`, pas dans le profil par défaut.
+Ouvrez enfin une nouvelle conversation dans ce profil et envoyez ce test :
+
+```text
+Réponds en une phrase : es-tu prêt à travailler en lecture seule ?
+```
+
+Vous devez obtenir une réponse. Si ce n'est pas le cas, arrêtez-vous ici. À partir de maintenant, tout le tutoriel se fait dans `chief-of-staff`, pas dans le profil par défaut.
 
 ## 4. Rédiger `SOUL.md`
 
@@ -231,10 +243,10 @@ Pour le premier essai :
 
 - laissez ce qu'il faut pour lire (fichiers si vous avez des notes locales de test) ;
 - désactivez le navigateur, la génération d'images, la voix, la délégation, Home Assistant, la messagerie ;
-- laissez **Cron désactivé** jusqu'à la section 9 ;
+- laissez **Cron désactivé** jusqu'à la section 10 ;
 - ne passez pas en mode YOLO, et ne désactivez pas les demandes d'approbation.
 
-Si vous avez choisi Blank Slate, vous partez déjà d'une base étroite. N'ajoutez que Notion à l'étape suivante.
+N'ajoutez que Notion à l'étape suivante. Une capacité supplémentaire devra toujours répondre à un besoin précis.
 
 ## 6. Ajouter Notion via le catalogue MCP
 
@@ -280,7 +292,7 @@ Pendant l'autorisation :
 - ne partagez que la page ou la base `Brief chief of staff` si Notion le permet ;
 - refusez tout autre espace.
 
-À l'écran de sélection des outils, **décochez** tout ce qui crée, met à jour, déplace ou supprime. Ne gardez que la lecture, la recherche et l'ouverture de page. Si la sonde des outils échoue, l'installation peut quand même réussir : rouvrez ensuite la liste avec :
+À l'écran de sélection des outils, **décochez** tout ce qui crée, met à jour, déplace ou supprime. Ne gardez que la lecture, la recherche et l'ouverture de page. Vous pourrez rouvrir cette liste avec :
 
 ```bash
 hermes -p chief-of-staff mcp configure notion
@@ -289,6 +301,8 @@ hermes -p chief-of-staff mcp configure notion
 Redémarrez la conversation du profil pour que les outils apparaissent.
 
 ![Connecter Notion depuis le catalogue MCP de Hermes](./images/02-connecteur-notion-mcp.png)
+
+*Notion apparaît dans le catalogue MCP du tableau de bord avec son point d'accès hébergé et son bouton d'installation.*
 
 Le connecteur `notion` du catalogue pointe vers le MCP hébergé par Notion. C'est un service tiers : ses conditions, ses tarifs et ses droits restent ceux de Notion, pas ceux de la licence MIT de Hermes.
 
@@ -299,10 +313,10 @@ Avant le premier vrai prompt, relisez ces points. Ils viennent de la [documentat
 1. **Le prompt n'est pas un coffre-fort.** « Lecture seule » dans `SOUL.md` n'empêche pas un outil encore coché d'écrire.
 2. **Le filtre d'outils, si.** La liste cochée à l'installation Notion est une vraie restriction côté Hermes. Moins il y a d'outils, mieux c'est.
 3. **Le compte Notion, aussi.** Si l'OAuth donne accès à tout l'espace, l'agent peut voir plus que votre page de test. Vérifiez les pages partagées dans Notion, pas seulement dans Hermes.
-4. **Les secrets restent hors du chat.** Hermes stocke les jetons dans un fichier `.env` du profil, pas dans `SOUL.md`. Ne les recopiez nulle part.
-5. **Gardez les approbations allumées.** Le mode `smart` ou `manual` demande confirmation pour les commandes dangereuses. N'utilisez pas `--yolo`.
+4. **Les secrets restent hors du chat.** Les clés de certains fournisseurs peuvent vivre dans le fichier privé `.env` du profil ; les jetons OAuth MCP, comme celui de Notion, sont conservés dans ses fichiers privés `mcp-tokens`. Ils ne doivent jamais être copiés dans `SOUL.md`, un prompt ou une capture.
+5. **Gardez les approbations allumées.** Le mode `smart` ou `manual` protège les sessions interactives. N'utilisez pas `--yolo`.
 6. **Un profil n'isole pas le disque.** Un profil sépare la mémoire Hermes. Sur le terminal local, l'agent a encore les droits de votre compte utilisateur. D'où l'intérêt de désactiver le terminal si vous n'en avez pas besoin.
-7. **Cron sans surveillance est plus risqué.** Une tâche planifiée n'a personne devant l'écran. C'est pour cela qu'on ne la crée qu'après un test manuel réussi.
+7. **Cron fonctionne sans personne devant l'écran.** Conservez la valeur par défaut `approvals.cron_mode: deny` : une commande dangereuse sera bloquée au lieu d'être approuvée automatiquement. Ne donnez à la routine ni terminal inutile, ni outil d'écriture.
 
 Si quelque chose vous paraît trop large, retirez Notion, rouvrez `hermes tools`, et recommencez avec moins d'outils.
 
@@ -396,27 +410,56 @@ Quand le brief manuel est devenu prévisible :
 2. Dans le Desktop, ouvrez l'onglet **Bots**, sélectionnez `chief-of-staff`, puis le panneau **Routines**.
 3. Créez une routine aux jours et à l'heure que vous contrôlez, par exemple un jour ouvré à 7 h 30, heure de Paris.
 4. Collez une consigne **aussi stricte** que le prompt manuel, pas une version plus large.
+5. Livrez d'abord le résultat en local et vérifiez-le avant d'ajouter une messagerie.
 
 ![Programmer une routine Hermes après validation manuelle](./images/03-programmer-routine-hermes.png)
+
+*Le texte est abrégé dans cette capture : collez dans la routine le prompt complet que vous avez validé. Le formulaire associe aussi le profil, l'horaire, la destination et d'éventuelles skills dédiées.*
+
+Une tâche planifiée est exécutée par la passerelle Hermes. Dans le Desktop, elle tourne avec l'application. Pour une installation en ligne de commande, installez le service du profil, puis contrôlez son état :
+
+```bash
+hermes -p chief-of-staff gateway install
+hermes -p chief-of-staff cron status
+```
+
+Vérifiez ensuite que les commandes dangereuses restent bloquées dans les exécutions sans surveillance :
+
+```bash
+hermes -p chief-of-staff config get approvals.cron_mode
+```
+
+La valeur attendue est `deny`, qui est la valeur par défaut. Si elle a été changée, rétablissez-la avant de créer la routine :
+
+```bash
+hermes -p chief-of-staff config set approvals.cron_mode deny
+```
 
 Équivalent terminal, une fois seulement que le test manuel est bon :
 
 ```bash
-hermes -p chief-of-staff cron create "every weekday at 07:30" "Prépare mon brief chief of staff en lecture seule à partir de la vue Notion Brief chief of staff. Ne crée, ne modifie, ne déplace et ne supprime rien. Ne contacte personne. Commence par l'état de Notion. Donne ensuite trois points à retenir, les dossiers actifs avec prochaine action, échéance, blocage et lien, trois préparations maximum, puis les informations manquantes. Distingue faits, déductions et inconnues. Ignore les dossiers terminés ou archivés."
+hermes -p chief-of-staff cron create --name "Brief matinal" --deliver local "30 7 * * 1-5" "Prépare mon brief chief of staff en lecture seule à partir de la vue Notion Brief chief of staff. Ne crée, ne modifie, ne déplace et ne supprime rien. Ne contacte personne. Commence par l'état de Notion. Donne ensuite trois points à retenir, les dossiers actifs avec prochaine action, échéance, blocage et lien, trois préparations maximum, puis les informations manquantes. Distingue faits, déductions et inconnues. Ignore les dossiers terminés ou archivés."
 ```
 
-Adaptez l'heure et le fuseau. Relisez le job :
+L'expression `30 7 * * 1-5` signifie « à 7 h 30, du lundi au vendredi » dans le fuseau de la machine qui exécute Hermes. Adaptez-la, puis relisez le job :
 
 ```bash
 hermes -p chief-of-staff cron list
 ```
 
-Contrôlez les premières exécutions planifiées comme s'il s'agissait encore de tests. Si le résultat dérive, mettez la routine en pause avant de corriger le prompt.
+La liste affiche un identifiant. Déclenchez une première exécution contrôlée, puis consultez son historique :
+
+```bash
+hermes -p chief-of-staff cron run ID_DU_JOB
+hermes -p chief-of-staff cron runs ID_DU_JOB --limit 5
+```
+
+Contrôlez ensuite les premières exécutions planifiées comme s'il s'agissait encore de tests. Si le résultat dérive, mettez la routine en pause avant de corriger le prompt.
 
 Pour arrêter :
 
 - Desktop : pause ou suppression dans **Routines** ;
-- terminal : `hermes -p chief-of-staff cron` puis pause ou suppression du job ;
+- terminal : `hermes -p chief-of-staff cron pause ID_DU_JOB`, puis `hermes -p chief-of-staff cron remove ID_DU_JOB` si vous voulez le supprimer ;
 - Notion : révoquez l'accès de l'application dans les réglages du compte.
 
 Une configuration utile doit pouvoir être éteinte aussi simplement qu'elle a été allumée.
@@ -424,9 +467,10 @@ Une configuration utile doit pouvoir être éteinte aussi simplement qu'elle a �
 ## Checklist
 
 - [ ] Hermes est installé par Desktop ou par la commande officielle `curl`.
-- [ ] `hermes setup`, `hermes model` et `hermes doctor` ont été faits **avant** le profil.
-- [ ] Une conversation simple répond, sans Notion et sans Cron.
+- [ ] `hermes doctor` a été lancé après l'installation et ses blocages utiles ont été compris.
 - [ ] Le profil `chief-of-staff` existe à part, créé dans l'interface ou avec `hermes profile create chief-of-staff --description`.
+- [ ] `hermes -p chief-of-staff setup model` a configuré le modèle de ce profil et vous avez vérifié le compte ainsi que le partage éventuel des identifiants.
+- [ ] Une conversation simple répond dans ce profil, sans Notion et sans Cron.
 - [ ] Vous savez que `chief of staff` est **votre** configuration, pas un preset officiel.
 - [ ] `SOUL.md` du profil décrit l'identité, sans secret.
 - [ ] Les outils inutiles sont éteints. Cron était éteint pendant les tests manuels.
@@ -435,6 +479,8 @@ Une configuration utile doit pouvoir être éteinte aussi simplement qu'elle a �
 - [ ] Chaque point important a été vérifié dans la page d'origine.
 - [ ] Aucune page n'a été modifiée pendant l'essai.
 - [ ] Cron n'a été programmé **qu'après** cette validation.
+- [ ] La passerelle du profil fonctionne et `approvals.cron_mode` vaut `deny`.
+- [ ] La première exécution a été déclenchée manuellement et relue dans l'historique.
 - [ ] Vous savez pauser la routine et révoquer Notion.
 - [ ] Vous avez en tête la limite : Hermes est MIT ; modèles, fournisseurs et services connectés peuvent rester propriétaires ou payants.
 
@@ -442,6 +488,7 @@ Une configuration utile doit pouvoir être éteinte aussi simplement qu'elle a �
 
 Gardez ces pages sous la main. Les libellés de l'interface peuvent changer ; le comportement décrit ici suit la documentation Hermes.
 
+- [Présentation officielle de Grok Bot par xAI](https://x.ai/news/introducing-grok-bot)
 - [Quickstart](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart)
 - [Profils](https://hermes-agent.nousresearch.com/docs/user-guide/profiles)
 - [Mode Bot](https://hermes-agent.nousresearch.com/docs/user-guide/bot-mode)
@@ -451,3 +498,10 @@ Gardez ces pages sous la main. Les libellés de l'interface peuvent changer ; le
 - [Sécurité](https://hermes-agent.nousresearch.com/docs/user-guide/security)
 
 Documentation utile en plus, sans remplacer les pages ci-dessus : [installation](https://hermes-agent.nousresearch.com/docs/getting-started/installation) et [SOUL.md](https://hermes-agent.nousresearch.com/docs/user-guide/features/personality).
+
+> [!NOTE]
+> **Interface observée**
+>
+> Captures réalisées le 23 août 2026 sur le tableau de bord local de Hermes Agent v0.20.3. Les noms des menus peuvent évoluer ; les commandes et les règles de sécurité ci-dessus ont été recoupées avec la documentation officielle à cette date.
+>
+> Le même jour, le parcours local a été rejoué avec un profil séparé sans clone : sélection du fournisseur et du modèle, chargement d'un `SOUL.md` dédié, brief manuel sur deux projets fictifs, détection de deux informations manquantes, installation de la passerelle, création d'une routine Cron et exécution manuelle réussie. Le profil, la routine et le service de démonstration ont ensuite été supprimés.
