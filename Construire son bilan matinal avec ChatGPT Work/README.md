@@ -43,6 +43,10 @@ Ajoutez ensuite une vue filtrée : `Statut` n’est pas `Terminé` et `Statut` n
 
 Pour le premier essai, ajoutez seulement trois projets fictifs ou non sensibles. L’un doit avoir une échéance proche, le deuxième un blocage et le troisième aucune action. Ce petit jeu de test permet de voir immédiatement si le brief trie bien l’information et signale ce qui manque.
 
+![Base de démonstration Notion : trois projets, dont un bloqué et un sans prochaine action](./images/08-base-notion-demonstration.jpg)
+
+*Base de démonstration réellement utilisée : trois projets, dont un bloqué et un sans prochaine action.*
+
 ## Étape 2 — Passer dans ChatGPT Work
 
 Ouvrez ChatGPT. En haut de l’écran, choisissez `Work` plutôt que `Chat`. Ce mode est conçu pour travailler avec des sources et des outils connectés, tout en gardant les conversations concernées dans un espace identifiable.
@@ -80,6 +84,10 @@ Revenez dans `Plugins`, recherchez `Google Calendar`, puis ouvrez sa fiche. Le m
 Installez le plugin et connectez le compte qui porte réellement vos rendez-vous de travail. Si vous avez plusieurs calendriers, commencez par votre calendrier principal. Vous pourrez ajouter les calendriers partagés plus tard, une fois le tri fiable.
 
 L’interface observée lors de ce tutoriel classe Google Calendar parmi les plugins capables d’interagir et d’écrire. La règle de départ reste donc stricte : consulter les événements, jamais les créer, les déplacer, les supprimer ou inviter quelqu’un.
+
+![Agenda de démonstration avec deux rendez-vous à 09:30 et 14:00](./images/09-agenda-rendez-vous-demonstration.jpg)
+
+*Avant le lancement, les deux rendez-vous de démonstration apparaissent bien à 09:30 et 14:00.*
 
 ## Étape 5 — Lancer le premier bilan manuellement
 
@@ -127,7 +135,16 @@ Contraintes :
 - Chaque affirmation importante doit renvoyer à sa source.
 ```
 
+![Brief obtenu : ordre chronologique, priorités P1/P2/P3, blocage et information manquante](./images/10-brief-resultat-attendu.jpg)
+
+*Résultat attendu : les rendez-vous sont dans l’ordre chronologique, les dossiers sont classés P1, P2 et P3, le blocage est signalé, et les champs vides portent la mention « information manquante ».*
+
 Le premier résultat n’a pas besoin d’être élégant. Il doit être vérifiable. Ouvrez les liens cités et contrôlez au moins un rendez-vous, une échéance et un blocage dans leur source d’origine.
+
+> [!TIP]
+> **Ce que doit confirmer votre essai**
+>
+> Avec ce jeu de test, le brief doit ordonner les rendez-vous chronologiquement, classer les dossiers en P1, P2 et P3, signaler le blocage (par exemple un budget qui empêche d’avancer) et écrire « information manquante » lorsque la prochaine action ou un autre champ est vide.
 
 ## Étape 6 — Faire passer cinq tests au résultat
 
