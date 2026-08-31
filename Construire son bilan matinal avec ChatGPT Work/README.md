@@ -6,6 +6,10 @@ Dans ce tutoriel, ChatGPT Work consultera deux sources : l’agenda pour les con
 
 Comptez une trentaine de minutes pour construire la première version, puis cinq minutes par jour pendant une semaine pour la corriger. Ne la planifiez qu’une fois son comportement devenu prévisible.
 
+## Prérequis
+
+Ce tutoriel demande un compte ChatGPT donnant accès à Work et aux plugins Notion et Google Calendar. Leur disponibilité dépend du forfait, de l’espace de travail et des réglages de l’administrateur. Un compte Google personnel et un compte Notion gratuit suffisent pour reproduire la démonstration avec des données fictives.
+
 > [!WARNING]
 > **Avant de connecter un compte professionnel**
 >
@@ -27,7 +31,7 @@ Chaque élément important renvoie vers sa source. Si ChatGPT ne peut pas consul
 
 L’agent ne réparera pas une base de projets devenue illisible. Commencez par une vue sobre, par exemple `Brief matinal`, qui ne contient que les sujets encore actifs.
 
-Créez une base de données Notion avec les propriétés suivantes :
+Créez une base de données Notion avec les sept propriétés suivantes :
 
 | Propriété | Type conseillé | Utilité dans le brief |
 | --- | --- | --- |
@@ -73,6 +77,10 @@ Cliquez sur `Installer le plugin`, connectez le bon compte Notion et sélectionn
 
 La fiche du plugin indique qu’il peut rechercher du contenu, mais aussi mettre des pages à jour. Si votre écran d’autorisation ne propose pas de portée strictement limitée, considérez que la lecture seule repose sur votre consigne et non sur une barrière technique. Pour une première semaine, évitez donc les pages confidentielles et contrôlez chaque résultat.
 
+![Réglage des autorisations du plugin Notion](./images/11-autorisations-notion.png)
+
+*Pour la démonstration, Notion est resté sur le réglage par défaut `Allow low-risk actions`. Avec des données professionnelles, préférez `Allow read actions` lorsqu’il est disponible.*
+
 ## Étape 4 — Installer le plugin d’agenda
 
 Revenez dans `Plugins`, recherchez `Google Calendar`, puis ouvrez sa fiche. Le même principe s’applique si votre organisation utilise un autre agenda disponible dans votre espace ChatGPT.
@@ -84,6 +92,16 @@ Revenez dans `Plugins`, recherchez `Google Calendar`, puis ouvrez sa fiche. Le m
 Installez le plugin et connectez le compte qui porte réellement vos rendez-vous de travail. Si vous avez plusieurs calendriers, commencez par votre calendrier principal. Vous pourrez ajouter les calendriers partagés plus tard, une fois le tri fiable.
 
 L’interface observée lors de ce tutoriel classe Google Calendar parmi les plugins capables d’interagir et d’écrire. La règle de départ reste donc stricte : consulter les événements, jamais les créer, les déplacer, les supprimer ou inviter quelqu’un.
+
+### Choisir le niveau d’autorisation
+
+Pour notre essai sur des données fictives, nous avons conservé le réglage par défaut `Autoriser les actions à faible risque`. Il évite de valider chaque consultation, mais peut aussi autoriser certaines actions jugées peu risquées. Il ne constitue donc pas un mode strictement limité à la lecture.
+
+Avec de vraies données professionnelles, choisissez plutôt `Autoriser les actions de lecture` lorsque ce réglage est proposé. ChatGPT pourra consulter les sources sans vous interrompre, mais devra demander votre accord avant une modification. Ce choix règle les validations dans ChatGPT ; il ne réduit pas nécessairement les autorisations techniques accordées au service lors de la connexion. Vérifiez ce réglage séparément pour Notion et Google Calendar.
+
+![Réglage des autorisations du plugin Google Calendar](./images/12-autorisations-google-calendar.png)
+
+*Le même réglage doit être vérifié séparément pour Google Calendar. La capture montre les quatre niveaux proposés et le niveau réellement conservé pour le test.*
 
 ![Agenda de démonstration avec deux rendez-vous à 09:30 et 14:00](./images/09-agenda-verifie.png)
 
@@ -139,6 +157,10 @@ Contraintes :
 
 *Résultat attendu : les rendez-vous sont dans l’ordre chronologique, les dossiers sont classés P1, P2 et P3, le blocage est signalé, et les champs vides portent la mention « information manquante ».*
 
+![Second contrôle du bilan : sources, priorités, blocage et informations manquantes visibles jusqu’à la fin](./images/14-bilan-matinal-resultat-complet.png)
+
+*Lors d’un second contrôle sans rendez-vous dans les vingt-quatre heures suivantes, Work l’indique au lieu d’en inventer un. La capture montre aussi les trois priorités, le blocage et la section complète des informations manquantes.*
+
 Le premier résultat n’a pas besoin d’être élégant. Il doit être vérifiable. Ouvrez les liens cités et contrôlez au moins un rendez-vous, une échéance et un blocage dans leur source d’origine.
 
 > [!TIP]
@@ -170,7 +192,11 @@ Répétez ce test chaque matin pendant une semaine. Notez seulement les erreurs 
 
 ## Étape 7 — Planifier la routine
 
-Une fois le résultat stable, ouvrez `Planification` dans la barre latérale. Choisissez l’espace `Work`, puis créez une tâche.
+Une fois le résultat stable, vous pouvez programmer la routine depuis la conversation `Bilan matinal`. Écrivez par exemple :
+
+> Programme ce bilan du lundi au vendredi à 7 h 30, dans le fuseau Europe/Paris, et publie chaque résultat dans cette conversation.
+
+Avant de valider, vérifiez la consigne enregistrée, les jours, l’heure, le fuseau et la conversation de destination. Vous pouvez aussi ouvrir `Scheduled` dans la barre latérale — `Tâches planifiées` sur l’interface française observée —, choisir l’espace `Work`, puis créer la tâche manuellement.
 
 ![Écran des tâches planifiées](./images/06-taches-planifiees.jpg)
 
@@ -195,7 +221,13 @@ Distingue les faits confirmés, les déductions et les informations inconnues. I
 
 Vérifiez ensuite l’heure, le fuseau, les jours d’exécution et l’espace sélectionné. Les tâches hébergées sur le web peuvent s’exécuter en arrière-plan, y compris lorsque votre ordinateur est éteint. Une tâche qui dépend de fichiers locaux ou d’une application de bureau exige en revanche que la machine et l’application restent disponibles.
 
-Contrôlez les trois premières exécutions planifiées comme s’il s’agissait encore de tests. Vous pouvez consulter les tâches actives, suspendues ou terminées et leurs exécutions récentes depuis l’écran `Planification`.
+![Détail de la tâche Bilan matinal avec les jours ouvrés, l’heure et la prochaine exécution](./images/13-bilan-matinal-prochaine-execution.png)
+
+*Dans notre essai, la tâche `Bilan matinal` est programmée du lundi au vendredi à 8 h. Le panneau permet de relire la consigne, les jours, l’heure et la prochaine exécution avant de laisser la routine fonctionner seule.*
+
+Contrôlez les trois premières exécutions planifiées comme s’il s’agissait encore de tests. Vous pouvez consulter les tâches actives, suspendues ou terminées et leurs exécutions récentes depuis l’écran `Scheduled`.
+
+Si une erreur vient de la source — une échéance fausse ou une priorité obsolète, par exemple — corrigez Notion ou Google Calendar. Si elle vient du comportement de l’agent, décrivez précisément le cas dans la conversation et demandez à ChatGPT de mettre à jour la tâche enregistrée. Par exemple : « Ce rapprochement n’est pas justifié. Modifie la tâche pour n’associer un rendez-vous à un projet que si son nom apparaît explicitement dans l’agenda ou dans Notion. »
 
 ## Étape 8 — Utiliser le brief sans lui céder la journée
 
@@ -211,7 +243,15 @@ Si le bilan devient bruyant ou si vos règles de sécurité changent, suspendez 
 
 Cette réversibilité fait partie du montage. Un assistant personnel utile doit pouvoir être arrêté aussi facilement qu’il a été installé.
 
+## Sources utiles
+
+- [Prise en main de ChatGPT Work](https://learn.chatgpt.com/docs/get-started-with-work)
+- [Tâches programmées dans ChatGPT](https://learn.chatgpt.com/docs/automations)
+- [Formules donnant accès à ChatGPT Work](https://learn.chatgpt.com/docs/pricing)
+- [Google Calendar](https://workspace.google.com/products/calendar/)
+- [Tarifs et formule gratuite de Notion](https://www.notion.com/pricing)
+
 > [!NOTE]
 > **Interface observée**
 >
-> Captures réalisées le 23 août 2026 sur une interface ChatGPT en français. Les noms, écrans, plugins disponibles et réglages dépendent du forfait, de l’espace de travail et des décisions de l’administrateur.
+> Captures réalisées les 23 et 31 août 2026 sur une interface ChatGPT en français. Les noms, écrans, plugins disponibles et réglages dépendent du forfait, de l’espace de travail et des décisions de l’administrateur.
