@@ -406,14 +406,12 @@ Répétez le prompt complet jusqu'à ce que le comportement soit stable. La capt
 
 Une [tâche Cron](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron) permet à Hermes de relancer automatiquement un prompt aux jours et à l'heure choisis. Dans ce tutoriel, elle sert à produire le brief matinal sans avoir à le demander chaque jour. Créez-la seulement après avoir vérifié le brief manuellement : si le prompt contient une erreur, la routine la répétera.
 
-Dans Bot Mode, les routines se trouvent dans le panneau **Routines** à côté du Bot. Sur les captures v0.20.3, ce panneau s'appelle encore **CRONJOBS**. Seul le nom du panneau change.
-
 Après la première exécution, cherchez le résultat dans le **Bot Chat**. S'il n'y apparaît pas, ouvrez l'historique de la routine. Les étapes suivantes expliquent comment vérifier que la routine est enregistrée dans le bon profil et qu'elle s'exécute correctement.
 
 Quand le brief manuel est devenu prévisible :
 
 1. Restez dans le profil `chief-of-staff`.
-2. Dans le Desktop, ouvrez l'onglet **Bots**, sélectionnez `chief-of-staff`, puis cliquez sur le `+` du panneau **Routines** ou **CRONJOBS**.
+2. Dans le Desktop, ouvrez l'onglet **Bots**, sélectionnez `chief-of-staff`, puis cliquez sur le `+` du panneau **Routines**.
 3. Créez une routine aux jours et à l'heure que vous contrôlez, par exemple un jour ouvré à 7 h 30, heure de Paris.
 4. Collez une consigne **aussi stricte** que le prompt manuel, pas une version plus large.
 5. Vérifiez où le job a été enregistré, même si le Bot `chief-of-staff` était visuellement sélectionné :
