@@ -404,11 +404,11 @@ Répétez le prompt complet jusqu'à ce que le comportement soit stable. La capt
 
 ## 10. Programmer Cron seulement après validation
 
-Les [tâches Cron](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron) de Hermes sont des routines planifiées. Dans le Desktop, Bot Mode les affiche à côté du Bot sous le nom **Routines** — ou **CRONJOBS** dans l'interface v0.20.3 capturée ici. Il s'agit des mêmes jobs, nommés sous la forme `[bot:nom-du-bot] nom-de-la-routine`.
+Une [tâche Cron](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron) permet à Hermes de relancer automatiquement un prompt aux jours et à l'heure choisis. Dans ce tutoriel, elle sert à produire le brief matinal sans avoir à le demander chaque jour. Créez-la seulement après avoir vérifié le brief manuellement : si le prompt contient une erreur, la routine la répétera.
 
-La documentation Bot Mode actuelle indique que le résultat d'une Routine revient dans le Bot Chat du Bot. L'interface v0.20.3 testée ici a toutefois enregistré la routine avec une livraison `local`, et sa commande refuse encore la destination `bot-chat`. Vérifiez donc le comportement de votre version au lieu de modifier la destination à l'aveugle.
+Dans Bot Mode, les routines se trouvent dans le panneau **Routines** à côté du Bot. Sur les captures v0.20.3, ce panneau s'appelle encore **CRONJOBS**. Seul le nom du panneau change.
 
-Ne les activez pas « pour gagner du temps ». Une routine répète aussi les erreurs.
+Après la première exécution, cherchez le résultat dans le **Bot Chat**. S'il n'y apparaît pas, ouvrez l'historique de la routine. Les étapes suivantes expliquent comment vérifier que la routine est enregistrée dans le bon profil et qu'elle s'exécute correctement.
 
 Quand le brief manuel est devenu prévisible :
 
