@@ -411,7 +411,7 @@ Après la première exécution, cherchez le résultat dans le **Bot Chat**. S'il
 Quand le brief manuel est devenu prévisible :
 
 1. Restez dans le profil `chief-of-staff`.
-2. Dans le Desktop, ouvrez l'onglet **Bots**, sélectionnez `chief-of-staff`, puis cliquez sur le `+` du panneau **Routines**.
+2. Dans le Desktop, ouvrez l'onglet **Bots**, sélectionnez `chief-of-staff`, puis créez la tâche dans le panneau des tâches planifiées. L'interface testée en v0.21.4 l'intitule **Scheduled Jobs** ; les captures plus bas montrent les anciens libellés **Routines** et **CRONJOBS**.
 3. Créez une routine aux jours et à l'heure que vous contrôlez, par exemple un jour ouvré à 7 h 30, heure de Paris.
 4. Collez une consigne **aussi stricte** que le prompt manuel, pas une version plus large.
 5. Vérifiez où le job a été enregistré, même si le Bot `chief-of-staff` était visuellement sélectionné :
@@ -421,25 +421,28 @@ hermes -p chief-of-staff cron list
 hermes cron list
 ```
 
-Si le job n'apparaît que comme `[bot:default] Brief matinal` (liste `chief-of-staff` vide, job visible seulement avec `hermes cron list`), supprimez-le avec `hermes cron remove ID_DU_JOB`, puis créez la routine avec la variante CLI qualifiée plus bas (`hermes -p chief-of-staff cron create ...`).
+Si le job n'apparaît que comme `[bot:default] Brief matinal` (liste `chief-of-staff` vide, job visible seulement avec `hermes cron list`), supprimez-le avec `hermes cron remove ID_DU_JOB`, puis créez la routine avec la variante CLI qualifiée plus bas (`hermes -p chief-of-staff cron create ...`). Ce défaut a été observé en v0.20.5, mais ne s'est pas reproduit lors du test en v0.21.4.
 6. Déclenchez une première exécution. Relisez-la dans le Bot Chat si votre version l'y publie ; sinon, contrôlez-la avec l'historique Cron présenté plus bas. N'ajoutez une messagerie qu'après cette vérification.
 
 ![Créer la routine Brief matinal dans Bot Mode](./images/06-routine-chief-of-staff-dans-bot-mode.png)
 
-*Le texte est abrégé dans cette capture : collez dans la routine le prompt complet que vous avez validé. Ici, **Weekdays** et **7:30 AM** correspondent à une exécution du lundi au vendredi à 7 h 30, dans le fuseau de la machine.*
+*Cette capture montre l'ancienne interface. Le texte y est abrégé : collez dans la routine le prompt complet que vous avez validé. **Weekdays** et **7:30 AM** correspondent à une exécution du lundi au vendredi à 7 h 30, dans le fuseau de la machine.*
 
 ![Routine Brief matinal active dans le panneau CRONJOBS](./images/07-routine-active-dans-bot-mode.png)
 
 *La carte **Brief matinal** confirme que la routine est créée et active pour ce Bot. Elle ne prouve pas encore qu'une exécution a réussi : déclenchez et relisez la première exécution avec les commandes ci-dessous.*
 
-La sélection visuelle du Bot ne suffit pas. Le 1er septembre 2026, sur Hermes Desktop v0.20.5, Create Cronjob a créé `[bot:default] Brief matinal` dans le profil par défaut malgré la sélection du Bot `chief-of-staff`. Les captures v0.20.3 ci-dessus restent le parcours historique ; elles ne montrent pas ce piège.
+La sélection visuelle du Bot ne suffit pas à prouver où le job a été enregistré. Le 1er septembre 2026, sur Hermes Desktop v0.20.5, Create Cronjob avait créé `[bot:default] Brief matinal` malgré la sélection de `chief-of-staff`. En v0.21.4, la création depuis Desktop a bien enregistré `[bot:chief-of-staff]`. Gardez le contrôle avec `cron list` : il reste utile si l'interface ou la version change.
 
-Une tâche planifiée est exécutée par la passerelle du profil Hermes. Le fait qu'elle apparaisse dans le Desktop ne suffit pas à prouver que cette passerelle tourne. Contrôlez son état ; lors du test en v0.20.3, il a fallu installer la passerelle du profil même avec l'application ouverte :
+Une tâche planifiée est déclenchée par la passerelle de l'hôte, commune aux profils dans la version actuelle. Le fait que le job apparaisse dans Desktop ne prouve pas que cette passerelle tourne. Contrôlez-la depuis `chief-of-staff` ; si elle manque, installez le service du profil `default`, qui sert aussi `chief-of-staff` :
 
 ```bash
-hermes -p chief-of-staff gateway install
+hermes -p chief-of-staff cron status
+hermes --profile default gateway install
 hermes -p chief-of-staff cron status
 ```
+
+N'installez plus de passerelle propre à `chief-of-staff`. Si une ancienne installation possède encore des services par profil, lancez d'abord le contrôle de migration indiqué par Hermes : `hermes --profile default gateway migrate --multiplex --dry-run`. Appliquez ensuite la migration seulement après avoir lu son résultat. Voir la [documentation des passerelles multiprofils](https://hermes-agent.nousresearch.com/docs/user-guide/multi-profile-gateways).
 
 Vérifiez ensuite que les commandes dangereuses restent bloquées dans les exécutions sans surveillance :
 
@@ -453,13 +456,13 @@ La valeur attendue est `deny`, qui est la valeur par défaut. Si elle a été ch
 hermes -p chief-of-staff config set approvals.cron_mode deny
 ```
 
-Variante Cron locale testée sur Hermes v0.20.3 et retestée sur Hermes v0.20.5, une fois seulement que le test manuel est bon :
+Variante CLI pour publier le résultat dans le Bot Chat, à utiliser une fois le brief manuel validé. Sa destination `bot-chat:chief-of-staff` a été testée sur Hermes v0.21.4 :
 
 ```bash
-hermes -p chief-of-staff cron create --name "Brief matinal" --deliver local "30 7 * * 1-5" "Prépare mon brief chief of staff en lecture seule à partir de la vue Notion Brief chief of staff. Ne crée, ne modifie, ne déplace et ne supprime rien. Ne contacte personne. Commence par l'état de Notion. Donne ensuite trois points à retenir, les dossiers actifs avec prochaine action, échéance, blocage et lien, trois préparations maximum, puis les informations manquantes. Distingue faits, déductions et inconnues. Ignore les dossiers terminés ou archivés."
+hermes -p chief-of-staff cron create --name "Brief matinal" --deliver bot-chat:chief-of-staff "30 7 * * 1-5" "Prépare mon brief chief of staff en lecture seule à partir de la vue Notion Brief chief of staff. Ne crée, ne modifie, ne déplace et ne supprime rien. Ne contacte personne. Commence par l'état de Notion. Donne ensuite trois points à retenir, les dossiers actifs avec prochaine action, échéance, blocage et lien, trois préparations maximum, puis les informations manquantes. Distingue faits, déductions et inconnues. Ignore les dossiers terminés ou archivés."
 ```
 
-Cette commande crée un job Cron livré localement ; elle ne reproduit pas à l'identique la destination d'une Routine Bot Mode récente. Ne remplacez pas `local` par `bot-chat` sans vérifier la version installée : ce dernier libellé a été rejeté lors du test en v0.20.3. C'est aussi la variante de rattrapage si Create Cronjob a déposé le job dans le profil par défaut.
+Remplacez la consigne abrégée de cette commande par le prompt complet que vous avez validé. `bot-chat:chief-of-staff` est accepté en v0.21.4 et livre le résultat dans le Bot Chat du profil ; `local` reste une destination possible si vous ne voulez pas cette livraison. Sur une ancienne version, vérifiez les destinations acceptées avec `hermes -p chief-of-staff cron create --help`. Cette commande peut aussi servir de rattrapage si Desktop a enregistré le job dans le profil par défaut.
 
 L'expression `30 7 * * 1-5` signifie « à 7 h 30, du lundi au vendredi » dans le fuseau de la machine qui exécute Hermes. Adaptez-la, puis relisez le job :
 
@@ -478,9 +481,9 @@ Contrôlez ensuite les premières exécutions planifiées comme s'il s'agissait 
 
 Pour arrêter :
 
-- Desktop : pause ou suppression dans **Routines** ;
+- Desktop : pause ou suppression dans le panneau des tâches planifiées ;
 - terminal : `hermes -p chief-of-staff cron pause ID_DU_JOB`, puis `hermes -p chief-of-staff cron remove ID_DU_JOB` si vous voulez le supprimer ; un job `[bot:default]` se retire avec `hermes cron remove ID_DU_JOB` ;
-- passerelle : `hermes -p chief-of-staff gateway uninstall`, si elle n'a été installée que pour l'essai ;
+- passerelle : elle sert potentiellement tous les profils. Ne la désinstallez avec `hermes --profile default gateway uninstall` que si vous l'avez installée pour cet essai et qu'aucun autre profil ne l'utilise ;
 - Notion : révoquez l'accès de l'application dans les réglages du compte.
 
 Une configuration utile doit pouvoir être éteinte aussi simplement qu'elle a été allumée.
@@ -501,7 +504,7 @@ Une configuration utile doit pouvoir être éteinte aussi simplement qu'elle a �
 - [ ] Aucune page n'a été modifiée pendant l'essai.
 - [ ] Bot Mode affiche la routine, programmée **seulement après** cette validation.
 - [ ] `hermes -p chief-of-staff cron list` et `hermes cron list` confirment que le job n'est pas seulement `[bot:default]`.
-- [ ] La passerelle du profil fonctionne et `approvals.cron_mode` vaut `deny`.
+- [ ] La passerelle de l'hôte sert `chief-of-staff` et `approvals.cron_mode` vaut `deny`.
 - [ ] La première exécution a été déclenchée manuellement et relue dans l'historique.
 - [ ] Vous savez pauser la routine et révoquer Notion.
 - [ ] Vous avez en tête la limite : Hermes est MIT ; modèles, fournisseurs et services connectés peuvent rester propriétaires ou payants.
@@ -517,6 +520,7 @@ Gardez ces pages sous la main. Les libellés de l'interface peuvent changer ; le
 - [Outils](https://hermes-agent.nousresearch.com/docs/user-guide/features/tools)
 - [MCP](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp)
 - [Cron](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron)
+- [Passerelle commune aux profils](https://hermes-agent.nousresearch.com/docs/user-guide/multi-profile-gateways)
 - [Sécurité](https://hermes-agent.nousresearch.com/docs/user-guide/security)
 
 Documentation utile en plus, sans remplacer les pages ci-dessus : [installation](https://hermes-agent.nousresearch.com/docs/getting-started/installation) et [SOUL.md](https://hermes-agent.nousresearch.com/docs/user-guide/features/personality).
@@ -524,4 +528,4 @@ Documentation utile en plus, sans remplacer les pages ci-dessus : [installation]
 > [!NOTE]
 > **Interface observée**
 >
-> Les captures ont été réalisées avec **Hermes Desktop** v0.20.3, où le menu s'appelle encore **CRONJOBS**. Le tutoriel a été retesté le 1er septembre 2026 avec v0.20.5 et Notion MCP en lecture seule : le brief a réussi sans modifier Notion. En v0.20.5, **Create Cronjob** peut toutefois enregistrer la routine dans le profil par défaut malgré la sélection de `chief-of-staff`. Voir la section 10 pour vérifier et corriger ce cas.
+> Les captures ont été réalisées avec **Hermes Desktop** v0.20.3, où le menu s'appelle encore **CRONJOBS**. Le test du 1er septembre 2026 sous v0.20.5 a confirmé le brief Notion, mais a aussi révélé un job créé sous `[bot:default]`. Le 23 septembre, sous Hermes Agent v0.21.4, le brief Notion a été vérifié dans les pages d'origine sans outil d'écriture actif ; Desktop a créé le job sous `[bot:chief-of-staff]`. Une tâche ponctuelle programmée à 12 h 45 s'est exécutée automatiquement et son résultat est apparu dans le Bot Chat. Ce test confirme le déclenchement planifié, pas plusieurs exécutions du rythme lundi-vendredi à 7 h 30. Le panneau observé porte le nom **Scheduled Jobs**.
