@@ -12,7 +12,7 @@ Comptez une heure pour l'installation et le premier profil, puis quelques essais
 
 **Difficulté : avancée.** Vous devrez installer Hermes, configurer l'accès à un modèle, limiter les droits du Bot et vérifier qu'une routine locale se déclenche. Si c'est votre premier agent, commencez par [Faire sa première application métier avec l'IA](../Faire%20son%20application%20en%20entreprise%20avec%20l%E2%80%99IA/) : l'exercice apprend à travailler dans un dossier de test et à contrôler les changements proposés par un agent.
 
-Pour être guidé, envoyez le lien ou le texte de ce tutoriel à ChatGPT Work, Codex ou Claude Code. Demandez : « Guide-moi une étape à la fois, explique chaque commande et attends que j'aie vérifié le résultat avant de continuer. » [ChatGPT Work sur le web](https://learn.chatgpt.com/docs/enterprise/chatgpt-work-overview) peut expliquer les étapes et relire les résultats que vous lui transmettez, mais n'accède pas directement à votre ordinateur. Codex ou Claude Code, lancés sur votre machine, peuvent aussi contrôler l'installation si vous leur accordez les droits nécessaires.
+Pour être guidé, envoyez le lien ou le texte de ce tutoriel à ChatGPT Work, Codex ou Claude Code. Demandez : « Guide-moi une étape à la fois, explique chaque commande et attends que j'aie vérifié le résultat avant de continuer. »
 
 ## Objectif et garde-fous
 
