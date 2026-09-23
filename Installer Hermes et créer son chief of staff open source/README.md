@@ -423,7 +423,7 @@ Si le job n'apparaît que comme `[bot:default] Brief matinal` (liste `chief-of-s
 
 ![Panneau Scheduled Jobs du Bot avec bouton plus pour ajouter une routine](./images/07-panneau-scheduled-jobs-v0.21.4.png)
 
-*Hermes Desktop v0.21.4 : le `+` ouvre **New cron** pour le Bot sélectionné. Le panneau était vide au moment de cette capture.*
+*Hermes Desktop v0.21.4 : le bouton + du panneau Scheduled Jobs ouvre le formulaire New cron du Bot sélectionné.*
 
 ![Créer la routine Brief matinal dans Bot Mode](./images/06-routine-chief-of-staff-dans-bot-mode.png)
 
