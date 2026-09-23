@@ -10,6 +10,8 @@ Comptez une trentaine de minutes pour construire la première version, puis cinq
 
 Ce tutoriel demande un compte ChatGPT donnant accès à Work et aux plugins Notion et Google Calendar. Leur disponibilité dépend du forfait, de l’espace de travail et des réglages de l’administrateur. Un compte Google personnel et un compte Notion gratuit suffisent pour reproduire la démonstration avec des données fictives.
 
+La démonstration utilise ChatGPT Work sur le web, dans un navigateur, à l’adresse [chatgpt.com](https://chatgpt.com). La tâche planifiée peut ainsi s’exécuter même lorsque votre ordinateur est éteint. Work sur le web n’accède pas directement aux fichiers ou aux applications de votre ordinateur : vous n’avez pas à lui ouvrir cet accès, mais vous devez vérifier séparément les autorisations de Notion et de Google Calendar.
+
 > [!WARNING]
 > **Avant de connecter un compte professionnel**
 >
@@ -53,13 +55,11 @@ Pour le premier essai, ajoutez seulement trois projets fictifs ou non sensibles.
 
 ## Étape 2 — Passer dans ChatGPT Work
 
-Ouvrez ChatGPT. En haut de l’écran, choisissez `Work` plutôt que `Chat`. Ce mode est conçu pour travailler avec des sources et des outils connectés, tout en gardant les conversations concernées dans un espace identifiable.
+Ouvrez [chatgpt.com](https://chatgpt.com) dans votre navigateur. En haut de l’écran, choisissez `Work` plutôt que `Chat`. Ce mode est conçu pour travailler avec des sources et des outils connectés, tout en gardant les conversations concernées dans un espace identifiable.
 
 ![Le sélecteur Chat/Work apparaît en haut de l’interface](./images/01-accueil-chatgpt-work.jpg)
 
 *Le sélecteur Chat/Work apparaît en haut de l’interface. Les libellés peuvent évoluer.*
-
-Créez une nouvelle conversation réservée à cette routine et nommez-la `Bilan matinal`. Ne mélangez pas ce fil avec des demandes ponctuelles : vous pourrez ainsi relire les résultats et corriger la procédure sans perdre son historique.
 
 ## Étape 3 — Installer le plugin Notion
 
@@ -109,7 +109,7 @@ Avec de vraies données professionnelles, choisissez plutôt `Autoriser les acti
 
 ## Étape 5 — Lancer le premier bilan manuellement
 
-Revenez dans la conversation `Bilan matinal`. Si l’interface le demande, mentionnez explicitement `@Notion` et `@Google Calendar`, puis copiez ce prompt :
+Après l’installation des deux plugins, créez une nouvelle conversation Work réservée à cette routine et nommez-la `Bilan matinal`. Ne mélangez pas ce fil avec des demandes ponctuelles : vous pourrez ainsi relire les résultats et corriger la procédure sans perdre son historique. Si l’interface le demande, mentionnez explicitement `@Notion` et `@Google Calendar`, puis copiez ce prompt :
 
 ```text
 Tu es mon assistant de préparation quotidienne.
@@ -196,7 +196,7 @@ Une fois le résultat stable, vous pouvez programmer la routine depuis la conver
 
 > Programme ce bilan du lundi au vendredi à 7 h 30, dans le fuseau Europe/Paris, et publie chaque résultat dans cette conversation.
 
-Avant de valider, vérifiez la consigne enregistrée, les jours, l’heure, le fuseau et la conversation de destination. Vous pouvez aussi ouvrir `Scheduled` dans la barre latérale — `Tâches planifiées` sur l’interface française observée —, choisir l’espace `Work`, puis créer la tâche manuellement.
+Avant de valider, vérifiez la consigne enregistrée, les jours, l’heure, le fuseau et la conversation de destination. Vous pouvez aussi ouvrir `Scheduled` dans la barre latérale — `Tâches planifiées` sur l’interface française observée —, choisir l’espace `Work`, puis créer la tâche manuellement. Dans ce cas, chaque exécution démarre une nouvelle conversation.
 
 ![Écran des tâches planifiées](./images/06-taches-planifiees.jpg)
 
@@ -219,7 +219,7 @@ Commence par indiquer si chaque source est disponible. Donne ensuite :
 Distingue les faits confirmés, les déductions et les informations inconnues. Ignore les projets terminés ou archivés. N’ajoute aucun conseil générique. Si rien d’important n’a changé, écris simplement « Aucun changement important depuis le dernier bilan ».
 ```
 
-Vérifiez ensuite l’heure, le fuseau, les jours d’exécution et l’espace sélectionné. Les tâches hébergées sur le web peuvent s’exécuter en arrière-plan, y compris lorsque votre ordinateur est éteint. Une tâche qui dépend de fichiers locaux ou d’une application de bureau exige en revanche que la machine et l’application restent disponibles.
+Vérifiez ensuite l’heure, le fuseau, les jours d’exécution et l’espace sélectionné. La tâche créée sur le web peut s’exécuter en arrière-plan, y compris lorsque votre ordinateur est éteint. Dans l’application de bureau, une tâche locale qui dépend de fichiers ou d’applications de l’ordinateur exige que la machine et l’application restent disponibles. Le mode Cloud de l’application de bureau, lorsqu’il est proposé, peut aussi fonctionner ordinateur éteint.
 
 ![Détail de la tâche Bilan matinal avec les jours ouvrés, l’heure et la prochaine exécution](./images/13-bilan-matinal-prochaine-execution.png)
 
@@ -247,6 +247,7 @@ Cette réversibilité fait partie du montage. Un assistant personnel utile doit 
 
 - [Prise en main de ChatGPT Work](https://learn.chatgpt.com/docs/get-started-with-work)
 - [Tâches programmées dans ChatGPT](https://learn.chatgpt.com/docs/automations)
+- [Accès aux fichiers et applications selon le mode Work](https://learn.chatgpt.com/docs/enterprise/chatgpt-work-overview)
 - [Formules donnant accès à ChatGPT Work](https://learn.chatgpt.com/docs/pricing)
 - [Google Calendar](https://workspace.google.com/products/calendar/)
 - [Tarifs et formule gratuite de Notion](https://www.notion.com/pricing)
