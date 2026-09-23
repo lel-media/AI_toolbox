@@ -6,6 +6,8 @@ Dans ce tutoriel, ChatGPT Work consultera deux sources : l’agenda pour les con
 
 Comptez une trentaine de minutes pour construire la première version, puis cinq minutes par jour pendant une semaine pour la corriger. Ne la planifiez qu’une fois son comportement devenu prévisible.
 
+**Difficulté : intermédiaire, sans code.** Le travail consiste surtout à connecter deux services, à limiter leurs droits et à vérifier chaque information du brief avant de le programmer.
+
 ## Prérequis
 
 Ce tutoriel demande un compte ChatGPT donnant accès à Work et aux plugins Notion et Google Calendar. Leur disponibilité dépend du forfait, de l’espace de travail et des réglages de l’administrateur. Un compte Google personnel et un compte Notion gratuit suffisent pour reproduire la démonstration avec des données fictives.
