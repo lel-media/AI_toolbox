@@ -118,17 +118,17 @@ Dans le Desktop, le [mode Bot](https://hermes-agent.nousresearch.com/docs/user-g
 ### Depuis l'interface
 
 1. Ouvrez l'onglet **Bots**.
-2. Cliquez sur **New Agent**.
+2. Cliquez sur le `+` du panneau **Bots**, puis sur **New bot**. Les captures v0.20.3 montrent encore **New Agent**.
 3. Donnez le nom `chief-of-staff`.
 4. Ajoutez un titre simple, par exemple `Chief of staff`.
 5. Ajoutez une description du rôle, par exemple : prépare un brief court, lit Notion, ne décide pas, ne modifie rien.
 6. Ouvrez **Advanced**, puis choisissez **Fresh profile (bundled skills)**. Cette option crée un profil neuf avec les skills fournis par Hermes. **Create empty** saute ces skills ; elle n'est utile que si vous voulez réellement partir d'un profil vide.
 7. Décidez séparément si le Bot doit partager les clés et comptes du profil principal. Pour cet essai, laissez **Share keys & accounts with the main profile** décoché, puis configurez explicitement le compte voulu dans le nouveau profil.
-8. Validez avec **Create Agent**, sélectionnez ce Bot, puis contrôlez le fournisseur et le modèle qu'il utilise.
+8. Validez avec **Create Bot**, sélectionnez ce Bot, puis contrôlez le fournisseur et le modèle qu'il utilise.
 
 ![Créer le chief-of-staff dans le mode Bots de Hermes](./images/05-creer-chief-of-staff-dans-bot-mode.png)
 
-*Le formulaire **New Agent** de Bot Mode sépare bien deux choix : partir d'un profil neuf avec les skills fournis par Hermes, puis partager ou non les clés et comptes du profil principal. Le modèle affiché reste hérité tant que vous n'en avez pas configuré un autre.*
+*Capture v0.20.3 : le formulaire s'appelait **New Agent** ; en v0.21.4, il s'appelle **New bot**. Les choix **Fresh profile (bundled skills)** et **Share keys & accounts with the main profile** sont toujours présents. Le modèle affiché reste hérité tant que vous n'en avez pas configuré un autre.*
 
 ### Depuis le terminal
 
@@ -302,7 +302,7 @@ Revenez dans le Bot Chat canonique pour que les outils apparaissent. Si vous vou
 
 ![Connecter Notion depuis le catalogue MCP de Hermes](./images/02-connecteur-notion-mcp.png)
 
-*Notion apparaît dans le catalogue MCP du tableau de bord avec son point d'accès hébergé et son bouton d'installation.*
+*Capture v0.20.3 : Notion apparaît dans le catalogue MCP avec son point d'accès hébergé et son bouton d'installation. Cet écran ne montre pas les outils autorisés ; vérifiez-les après l'installation.*
 
 Le connecteur `notion` du catalogue pointe vers le MCP hébergé par Notion. C'est un service tiers : ses conditions, ses tarifs et ses droits restent ceux de Notion, pas ceux de la licence MIT de Hermes.
 
@@ -374,7 +374,7 @@ Le premier résultat n'a pas besoin d'être élégant. Il doit être **vérifiab
 
 ![Tester le chief-of-staff dans son Bot Chat canonique](./images/04-hermes-bot-mode-roster.png)
 
-*Le Bot Chat répond ici à partir de deux projets fictifs fournis pour le test, tandis que la liste des Bots et le panneau des routines restent visibles. Cette capture valide le parcours dans Bot Mode et le comportement manuel ; elle ne prouve pas encore que Notion est connecté.*
+*Capture v0.20.3 : le Bot Chat répond à partir de deux projets fictifs fournis dans le message. Elle montre le parcours manuel dans Bot Mode ; elle ne prouve pas que Notion est connecté. L'ancien panneau **CRONJOBS** est devenu **Scheduled Jobs**.*
 
 ## 9. Validation factuelle
 
@@ -411,10 +411,11 @@ Après la première exécution, cherchez le résultat dans le **Bot Chat**. S'il
 Quand le brief manuel est devenu prévisible :
 
 1. Restez dans le profil `chief-of-staff`.
-2. Dans le Desktop, ouvrez l'onglet **Bots**, sélectionnez `chief-of-staff`, puis créez la tâche dans le panneau des tâches planifiées. L'interface testée en v0.21.4 l'intitule **Scheduled Jobs** ; les captures plus bas montrent les anciens libellés **Routines** et **CRONJOBS**.
+2. Dans le Desktop, ouvrez l'onglet **Bots**, sélectionnez `chief-of-staff`, puis cliquez sur **New cron** dans **Scheduled Jobs**. Les captures plus bas montrent l'ancien panneau **CRONJOBS**.
 3. Créez une routine aux jours et à l'heure que vous contrôlez, par exemple un jour ouvré à 7 h 30, heure de Paris.
 4. Collez une consigne **aussi stricte** que le prompt manuel, pas une version plus large.
-5. Vérifiez où le job a été enregistré, même si le Bot `chief-of-staff` était visuellement sélectionné :
+5. Dans **Send results to**, choisissez **Chief of staff’s chat (bot responds)** pour recevoir le brief dans le Bot Chat. La valeur initiale **Run history only** conserve le résultat dans l'historique du job, sans cette livraison.
+6. Vérifiez où le job a été enregistré, même si le Bot `chief-of-staff` était visuellement sélectionné :
 
 ```bash
 hermes -p chief-of-staff cron list
@@ -422,15 +423,15 @@ hermes cron list
 ```
 
 Si le job n'apparaît que comme `[bot:default] Brief matinal` (liste `chief-of-staff` vide, job visible seulement avec `hermes cron list`), supprimez-le avec `hermes cron remove ID_DU_JOB`, puis créez la routine avec la variante CLI qualifiée plus bas (`hermes -p chief-of-staff cron create ...`). Ce défaut a été observé en v0.20.5, mais ne s'est pas reproduit lors du test en v0.21.4.
-6. Déclenchez une première exécution. Relisez-la dans le Bot Chat si votre version l'y publie ; sinon, contrôlez-la avec l'historique Cron présenté plus bas. N'ajoutez une messagerie qu'après cette vérification.
+7. Déclenchez une première exécution. Relisez-la dans le Bot Chat si vous avez choisi cette destination ; contrôlez aussi l'historique Cron présenté plus bas. N'ajoutez une messagerie qu'après cette vérification.
 
 ![Créer la routine Brief matinal dans Bot Mode](./images/06-routine-chief-of-staff-dans-bot-mode.png)
 
-*Cette capture montre l'ancienne interface. Le texte y est abrégé : collez dans la routine le prompt complet que vous avez validé. **Weekdays** et **7:30 AM** correspondent à une exécution du lundi au vendredi à 7 h 30, dans le fuseau de la machine.*
+*Capture v0.20.3 : ce formulaire n'affiche pas le choix **Send results to** de v0.21.4. Sélectionnez **Chief of staff’s chat (bot responds)** dans l'interface actuelle. Le texte de la capture est abrégé : collez le prompt complet validé. **Weekdays** et **7:30 AM** désignent une exécution du lundi au vendredi à 7 h 30, dans le fuseau de la machine.*
 
 ![Routine Brief matinal active dans le panneau CRONJOBS](./images/07-routine-active-dans-bot-mode.png)
 
-*La carte **Brief matinal** confirme que la routine est créée et active pour ce Bot. Elle ne prouve pas encore qu'une exécution a réussi : déclenchez et relisez la première exécution avec les commandes ci-dessous.*
+*Capture v0.20.3 : la carte **Brief matinal** confirme que la routine est créée et active pour ce Bot. Elle ne prouve pas qu'une exécution a réussi : déclenchez et relisez la première exécution avec les commandes ci-dessous.*
 
 La sélection visuelle du Bot ne suffit pas à prouver où le job a été enregistré. Le 1er septembre 2026, sur Hermes Desktop v0.20.5, Create Cronjob avait créé `[bot:default] Brief matinal` malgré la sélection de `chief-of-staff`. En v0.21.4, la création depuis Desktop a bien enregistré `[bot:chief-of-staff]`. Gardez le contrôle avec `cron list` : il reste utile si l'interface ou la version change.
 
